@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\wrong\documents\visual studio 2017\projects\textquestc\textquestc\main.cpp(4): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  TextQuestC.vcxproj -> C:\Users\Wrong\Documents\Visual Studio 2017\Projects\TextQuestC\x64\Debug\TextQuestC.exe
