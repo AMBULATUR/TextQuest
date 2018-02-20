@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
+//Test
 #define ResolutionX 1920/2
 #define ResolutionY 1080/2
+//Test 234
 void Settings(sf::RenderWindow & window)
 {
 	Texture settingsBackground;
