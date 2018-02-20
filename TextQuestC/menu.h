@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "Settings.h"
 #include "GameProcess.h"
+#define ResolutionX 1920
+#define ResolutionY 1080
 using namespace sf;
 
 void SetFullScreen(RenderWindow & window);
@@ -36,12 +38,12 @@ void menu(sf::RenderWindow & window)
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			if (menuNum == 1) {
-				GameProcess(window); window.create(VideoMode(1920 / 2, 1080 / 2), "TextQuest", Style::None);
+				GameProcess(window); window.create(VideoMode(ResolutionX / 2, ResolutionY/ 2), "TextQuest", Style::None);
 			};
 
 			if (menuNum == 2)
 			{
-				Settings(window); window.create(VideoMode(1920 / 2, 1080 / 2), "TextQuest", Style::None);
+				Settings(window); window.create(VideoMode(ResolutionX / 2, ResolutionY / 2), "TextQuest", Style::None);
 			}
 			if (menuNum == 3) { window.close(); isMenu = false; }
 		}
@@ -55,5 +57,5 @@ void menu(sf::RenderWindow & window)
 
 void SetFullScreen(RenderWindow & window)
 {
-	window.create(VideoMode(1920, 1080, 32), "TextQuest", sf::Style::None);
+	window.create(VideoMode(ResolutionX, ResolutionY, 32), "TextQuest", sf::Style::None);
 }
