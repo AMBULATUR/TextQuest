@@ -1,10 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include "Settings.h"
 #include "GameProcess.h"
-#define ResolutionX 1920
-#define ResolutionY 1080
+#define ResolutionX 1920/2
+#define ResolutionY 1080/2
 using namespace sf;
-
+//
 void SetFullScreen(RenderWindow & window);
 
 void menu(sf::RenderWindow & window)
