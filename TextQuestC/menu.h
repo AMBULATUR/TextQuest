@@ -25,6 +25,7 @@ void menu(sf::RenderWindow & window)
 	menu3.setPosition(100, 150);
 	while (isMenu)
 	{
+		
 		menu1.setColor(Color::White);
 		menu2.setColor(Color::White);
 		menu3.setColor(Color::White);
@@ -38,12 +39,12 @@ void menu(sf::RenderWindow & window)
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			if (menuNum == 1) {
-				GameProcess(window); window.create(VideoMode(ResolutionX / 2, ResolutionY/ 2), "TextQuest", Style::None);
+				GameProcess(window); window.create(VideoMode(ResolutionX , ResolutionY), "TextQuest", Style::None);
 			};
 
 			if (menuNum == 2)
 			{
-				Settings(window); window.create(VideoMode(ResolutionX / 2, ResolutionY / 2), "TextQuest", Style::None);
+				Settings(window); window.create(VideoMode(ResolutionX, ResolutionY), "TextQuest", Style::None);
 			}
 			if (menuNum == 3) { window.close(); isMenu = false; }
 		}
