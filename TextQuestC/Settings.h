@@ -1,15 +1,16 @@
-#include <SFML/Graphics.hpp>
+#pragma once
+#include "Helper.h"
 using namespace sf;
-#define ResolutionX 1920
-#define ResolutionY 1080
-void Settings(sf::RenderWindow & window)
+void Settings(RenderWindow & window,Vector2u sz)
 {
+//Загрузка текстур
 	Texture settingsBackground;
 	settingsBackground.loadFromFile("images/settings.png");
+//Преобразование в спрайт
 	Sprite background(settingsBackground);
-	background.setPosition(0, 0);
-	window.create(VideoMode(ResolutionX, ResolutionY, 32), "TextQuest", sf::Style::None);
+//Начало отрисовки
+	SetFullScreen(window, sz);
 	window.draw(background);
 	window.display();
-	while (!Keyboard::isKeyPressed(Keyboard::Escape));
+	Sleep();
 }

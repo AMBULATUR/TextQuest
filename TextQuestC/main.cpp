@@ -1,15 +1,16 @@
 #include "menu.h"
-
 class Game {
+private:
 public:
 	Game()
 	{
-		sf::RenderWindow window(VideoMode(1920 / 2, 1080 / 2), "TextQuest", Style::None);
+		sf::RenderWindow window(VideoMode(0, 0), "TextQuest", Style::Fullscreen);
+		auto sz = window.getSize();
 		window.setFramerateLimit(30);
-		menu(window);
+		menu(window,sz);
 	};
-};
 
+};
 int main()
 {
 	Game obj;
