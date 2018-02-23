@@ -23,7 +23,6 @@ void menu(RenderWindow & window,Vector2u sz)
 	menu3.setPosition(100, 150);
 	while (isMenu)
 	{
-		
 		menu1.setColor(Color::White);
 		menu2.setColor(Color::White);
 		menu3.setColor(Color::White);

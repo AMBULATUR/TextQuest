@@ -1,4 +1,5 @@
-.vs
+..vs/
+.vs/
 x64
 Debug
 Release
