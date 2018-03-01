@@ -1,8 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/Window/Event.hpp>
 #include "Settings.h"
 #include "GameProcess.h"
 #include "Helper.h"
+
+
+
 using namespace sf;
 
 void menu(RenderWindow & window,Vector2u sz)

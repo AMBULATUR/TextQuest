@@ -1,16 +1,26 @@
 #pragma once
 #include "Helper.h"
+
+#include <imgui.h>
+#include <imgui-SFML.h>
+
 using namespace sf;
-void Settings(RenderWindow & window,Vector2u sz)
+void Settings(RenderWindow & window, Vector2u sz)
 {
-//Загрузка текстур
+	//Загрузка текстур
 	Texture settingsBackground;
 	settingsBackground.loadFromFile("images/settings.png");
-//Преобразование в спрайт
+	//Преобразование в спрайт
 	Sprite background(settingsBackground);
-//Начало отрисовки
+	//Начало отрисовки
 	SetFullScreen(window, sz);
 	window.draw(background);
 	window.display();
+	
+	//######################
+
+	
+	//######################
+	
 	Sleep();
 }
