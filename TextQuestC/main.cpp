@@ -14,8 +14,7 @@ public:
 		window.setVerticalSyncEnabled(true);
 		auto sz = window.getSize();
 		
-		window.setFramerateLimit(60);
-
+		
 		menu(window, sz);
 	};
 };

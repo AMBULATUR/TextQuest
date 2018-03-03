@@ -42,12 +42,12 @@ void menu(RenderWindow & window,Vector2u sz)
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			if (menuNum == 1) {
-				GameProcess(window,sz); SetWindowResolution(window, sz);
+				GameProcess(window,sz); SetWindowResolution(window, sz); window.setFramerateLimit(30);
 			};
 
 			if (menuNum == 2)
 			{
-				Settings(window,sz); SetWindowResolution(window, sz);
+				Settings(window,sz); SetWindowResolution(window, sz); window.setFramerateLimit(30);
 			}
 			if (menuNum == 3) { window.close(); isMenu = false; }
 		}
