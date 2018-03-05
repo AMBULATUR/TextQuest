@@ -1,19 +1,22 @@
-#include <SFML/Graphics.hpp>
+#pragma once
+#include "Helper.h"
 using namespace sf;
+<<<<<<< HEAD
 #define ResolutionX 1366/2
 #define ResolutionY 768/2
 void GameProcess(sf::RenderWindow & window)
+=======
+void GameProcess(RenderWindow & window, Vector2u sz)
+>>>>>>> AMBULATUR/master
 {
-	//auto sf = gameBackground.getScale();
-	//sf.x = 1.0; sf.y = 1.0; //Для уменьшения пикчи от 0.01 до 1.0
-	//gameBackground.setScale(sf);
-
+//Загрузка текстур
 	Texture gameBackground;
 	gameBackground.loadFromFile("images/background.png");
-	gameBackground.setSmooth(true);
+//Преобразование в спрайт
 	Sprite background(gameBackground);
-	window.create(VideoMode(ResolutionX, ResolutionY, 32), "TextQuest", sf::Style::None);
+//Начало отрисовки
+	SetFullScreen(window, sz);
 	window.draw(background);
 	window.display();
-	while (!Keyboard::isKeyPressed(Keyboard::Escape));
+	Sleep();
 }

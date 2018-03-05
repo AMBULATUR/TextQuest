@@ -1,0 +1,8 @@
+..vs/
+.vs/
+x64
+Debug
+Release
+TextQuestC/Release
+TextQuestC/Debug
+TextQuestC/x64
