@@ -16,9 +16,8 @@ public:
 =======
 		sf::RenderWindow window(VideoMode(0, 0), "TextQuest", Style::Fullscreen);
 		window.setVerticalSyncEnabled(true);
-		auto sz = window.getSize();
-		
-		
+		Vector2u sz = window.getSize();
+		ImGui::CreateContext();
 		menu(window, sz);
 >>>>>>> AMBULATUR/master
 	};
