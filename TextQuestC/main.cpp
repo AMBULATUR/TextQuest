@@ -4,7 +4,7 @@ class Game {
 public:
 	Game()
 	{
-		sf::RenderWindow window(VideoMode(1920 / 2, 1080 / 2), "TextQuest", Style::None);
+		sf::RenderWindow window(VideoMode(1366 / 2, 768 / 2), "TextQuest", Style::None);
 		menu(window);
 	};
 };
