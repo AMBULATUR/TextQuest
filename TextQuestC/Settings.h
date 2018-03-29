@@ -1,8 +1,9 @@
 #pragma once
-#include "Helper.h"
 
+#include "Helper.h"
 #include <imgui.h>
 #include <imgui-SFML.h>
+#include "SettingsInit.h"
 
 #define TopLeft 0
 #define TopRight 1
@@ -10,10 +11,11 @@
 #define BotRight 3
 
 using namespace sf;
+
 ImVec2 GetWindowPivot(int corner);
 ImVec2 GetWindowPos(int corner);
 void ShowExampleAppFixedOverlay(bool* p_open, ImVec2 window_pos, ImVec2 window_pos_pivot);
-void Settings(RenderWindow & window, Vector2u sz)
+void Settings(RenderWindow & window, Vector2u WindowVector)
 {
 	//Загрузка текстур
 	Texture settingsBackground;
@@ -24,21 +26,21 @@ void Settings(RenderWindow & window, Vector2u sz)
 	//Начало отрисовки
 	// sz = Vector2u(1280, 1024);
 	background.setScale(Vector2f(1.0f, 1.0f));
-	SetFullScreen(window, sz);
+	SetFullScreen(window, WindowVector);
 
 
 	//OtherVars Start
 	window.setFramerateLimit(60); //FrameRate for IMGUI
 
 	ImVec2
-		WindowSize(sz.x / 2.0f, sz.y / 2.0f),
-		VideoWindowPos(sz.x * 0.0f, sz.y * 0.0f),
-		AudioWindowPos(sz.x / 2.0f, sz.y * 0.0f),
-		GameplayWindowPos(sz.x * 0.0f, sz.y / 2.0f),
-		ControlWindowPos(sz.x / 2.0f, sz.y / 2.0f);
+		WindowSize(WindowVector.x / 2.0f, WindowVector.y / 2.0f),
+		VideoWindowPos(WindowVector.x * 0.0f, WindowVector.y * 0.0f),
+		AudioWindowPos(WindowVector.x / 2.0f, WindowVector.y * 0.0f),
+		GameplayWindowPos(WindowVector.x * 0.0f, WindowVector.y / 2.0f),
+		ControlWindowPos(WindowVector.x / 2.0f, WindowVector.y / 2.0f);
 
-	std::string x = std::to_string(sz.x);
-	std::string y = std::to_string(sz.y);
+	std::string x = std::to_string(WindowVector.x);
+	std::string y = std::to_string(WindowVector.y);
 	std::string OptimalResolution = "optimal resolution - " + x + "x" + y;
 	const char *RR = OptimalResolution.c_str();
 
@@ -88,7 +90,7 @@ void Settings(RenderWindow & window, Vector2u sz)
 
 
 
-			//VideoWindow Start
+		//VideoWindow Start
 		ImGui::Begin("Video", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(VideoWindowPos);
@@ -133,11 +135,6 @@ void Settings(RenderWindow & window, Vector2u sz)
 		ImGui::ShowTestWindow(); // DEBUG
 
 
-
-
-
-
-
 		window.clear();
 		window.draw(background);
 		ImGui::SFML::Render(window);
@@ -162,7 +159,11 @@ static void ShowExampleAppFixedOverlay(bool* p_open, ImVec2 window_pos, ImVec2 w
 
 static ImVec2 GetWindowPos(int corner)
 {
+
 	const float DISTANCE = 10.0f;
+
+
+
 	return ImVec2(
 		(corner & 1)
 		?
@@ -179,5 +180,17 @@ static ImVec2 GetWindowPos(int corner)
 static ImVec2 GetWindowPivot(int corner)
 {
 
-	return ImVec2((corner & 1) ? 1.0f : 0.0f, (corner & 2) ? 1.0f : 0.0f);
+	return ImVec2
+	(
+		(corner & 1)
+		?
+		1.0f 
+		:
+		0.0f,
+		(corner & 2)
+		?
+		1.0f 
+		:
+		0.0f
+	);
 }

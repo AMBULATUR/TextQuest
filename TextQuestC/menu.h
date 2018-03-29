@@ -7,13 +7,12 @@
 #include "GameProcess.h"
 #include "Helper.h"
 
-
-
 using namespace sf;
 
-void menu(RenderWindow & window,Vector2u sz)
+void menu(RenderWindow & window,Vector2u WindowVector)
 {
-	SetWindowResolution(window, sz);
+	SetWindowResolution(window, WindowVector);
+	window.setFramerateLimit(30);
 	Texture menuTexture1, menuTexture2, menuTexture3;
 	menuTexture1.loadFromFile("images/111.png");
 	menuTexture2.loadFromFile("images/222.png");
@@ -27,6 +26,7 @@ void menu(RenderWindow & window,Vector2u sz)
 	menu1.setPosition(100, 30);
 	menu2.setPosition(100, 90);
 	menu3.setPosition(100, 150);
+
 	while (isMenu)
 	{
 		menu1.setColor(Color::White);
@@ -42,12 +42,12 @@ void menu(RenderWindow & window,Vector2u sz)
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
 			if (menuNum == 1) {
-				GameProcess(window,sz); SetWindowResolution(window, sz); window.setFramerateLimit(30);
+				GameProcess(window,WindowVector); SetWindowResolution(window, WindowVector); window.setFramerateLimit(30);
 			};
 
 			if (menuNum == 2)
 			{
-				Settings(window,sz); SetWindowResolution(window, sz); window.setFramerateLimit(30);
+				Settings(window,WindowVector); SetWindowResolution(window, WindowVector); window.setFramerateLimit(30);
 			}
 			if (menuNum == 3) { window.close(); isMenu = false; }
 		}
@@ -58,4 +58,3 @@ void menu(RenderWindow & window,Vector2u sz)
 		window.display();
 	}
 }
-
