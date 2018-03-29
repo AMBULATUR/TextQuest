@@ -32,11 +32,11 @@ https://www.dropbox.com/sh/uw84i7phq9d6ayp/AADO_kgEQ7n5p4qIYb7TuE5ma?dl=0 - Па
 	GameProcess(window, sz);
 }*/
 
-#Сценарий 
+# Сценарий 
 https://docs.google.com/document/d/1IYN8b1lDLbnpBKY1xFyTW36zPUx5vft254d_WjIW7Ms/edit
 
-#ТЗ
+# ТЗ
 https://docs.google.com/document/d/1OpSqhIBO92MsrzHS0ZS9sA8uvr1GdXbTcxsqfEbe8j0/edit
 
-#Trello
+# Trello
 https://trello.com/b/5ECyrk2b/textquest
