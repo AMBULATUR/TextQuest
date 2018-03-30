@@ -23,7 +23,7 @@ public:
 
 int main()
 {
-	//SIObject.InitCheck();
-	Game run;
+	auto vcs = SIObject.InitCheck();
+	//Game run;
 	return 0;
 }

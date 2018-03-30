@@ -57,4 +57,4 @@ void menu(RenderWindow & window,Vector2u WindowVector)
 		window.draw(menu3);
 		window.display();
 	}
-}
+}	
