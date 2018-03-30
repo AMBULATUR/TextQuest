@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="GameProcess.h" />
     <ClInclude Include="Helper.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="SettingsInit.h" />

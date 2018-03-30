@@ -3,27 +3,28 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
-
+#include "main.h"
 using namespace std;
 SettingsInit SIObject;
 class Game {
 private:
 public:
-	Game()
+	Game(SettingsInit::SetUp params)
 	{
-		//Vector2u WindowVector;
-		//sf::RenderWindow window;
-		sf::RenderWindow window(VideoMode(0, 0), "TextQuest", Style::Fullscreen);
-		window.setVerticalSyncEnabled(true);
+		sf::RenderWindow window(VideoMode(params.Xresolution, params.Yresolution, 32), "TextQuest", Style::None);
 		Vector2u WindowVector = window.getSize();
 		ImGui::CreateContext();
-		menu(window, WindowVector);
+		//	SetFullScreen(window, WindowVector);
+		window.setFramerateLimit(60);
+		menu(window, WindowVector,params);
 	};
 }; 
 
 int main()
 {
+	//SettingsInit::SetUp *vcs;
 	auto vcs = SIObject.InitCheck();
-	//Game run;
+	
+	Game run(*vcs);
 	return 0;
 }

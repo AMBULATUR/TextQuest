@@ -4,8 +4,8 @@
 using namespace std;
 class SettingsInit
 {
+public:
 	//typedef struct __attribute__((__packed__))  - STOP, ÏÀÊÎÂÀÍÍÀß ÌÀØÈÍÍÎ-ÍÅÇÀÂÈÑÈÌÀß ÑÒÐÓÊÒÓÐÀ Â ßÇÛÊÅ ÑÈ(HE Cpp)
-
 	struct SetUp {
 		int Xresolution;
 		int Yresolution;
@@ -19,7 +19,7 @@ class SettingsInit
 
 
 	FILE * ptrFile;
-public:
+//public:
 
 	SetUp * InitCheck()
 	{
@@ -55,9 +55,9 @@ public:
 		ptrizen->Yresolution = WindowVector.y;
 		ptrizen->FullScreenMode = false;
 		//[AUDIO]
-		ptrizen->Music = 50;
-		ptrizen->Effects = 50;
-		ptrizen->MMusic = false;
+		ptrizen->Music = 30;
+		ptrizen->Effects = 11;
+		ptrizen->MMusic = true;
 		ptrizen->MEffects = false;
 		//[Gameplay]
 		//[Control]
@@ -102,18 +102,19 @@ public:
 	SetUp* LoadSettings(SetUp &params)
 	{
 		ptrFile = fopen("settings.ini", "r");
-		
+
 		struct SetUp *ptrizen = &params;
-		ptrizen->Xresolution;
-		ptrizen->Yresolution;
-		ptrizen->FullScreenMode;
-		ptrizen->Music;
-		ptrizen->Effects;
-		ptrizen->MMusic;
-		ptrizen->MEffects;
-
-
-		fclose(ptrFile);
+	/*	while (fgets(ptrizen->test, 100, ptrFile) != NULL)
+		{
+			ptrizen->Xresolution;
+			ptrizen->Yresolution;
+			ptrizen->FullScreenMode;
+			ptrizen->Music;
+			ptrizen->Effects;
+			ptrizen->MMusic;
+			ptrizen->MEffects;
+		}
+		fclose(ptrFile);*/
 		return ptrizen;
 	}
 };

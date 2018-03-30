@@ -9,52 +9,81 @@
 
 using namespace sf;
 
-void menu(RenderWindow & window,Vector2u WindowVector)
+void menu(RenderWindow & window, Vector2u WindowVector, SettingsInit::SetUp params)
 {
-	SetWindowResolution(window, WindowVector);
-	window.setFramerateLimit(30);
-	Texture menuTexture1, menuTexture2, menuTexture3;
-	menuTexture1.loadFromFile("images/111.png");
-	menuTexture2.loadFromFile("images/222.png");
-	menuTexture3.loadFromFile("images/333.png");
-	
-	Sprite menu1(menuTexture1), menu2(menuTexture2), menu3(menuTexture3);
-
+#pragma region Vars
 	bool isMenu = 1;
-	int menuNum = 0;
-
-	menu1.setPosition(100, 30);
-	menu2.setPosition(100, 90);
-	menu3.setPosition(100, 150);
+	int Select = 0;
+#pragma endregion
+#pragma region Texture
+	Texture
+		mainMenu,
+		NewGameButton,
+		LoadingButton,
+		SettingsButton,
+		ExitButton;
+#pragma endregion
+#pragma region LoadTexture
+	mainMenu.loadFromFile("images/MenuBackground.png");
+	NewGameButton.loadFromFile("images/NewGame.png");
+	LoadingButton.loadFromFile("images/Loading.png");
+	SettingsButton.loadFromFile("images/Settings.png");
+	ExitButton.loadFromFile("images/Exit.png");
+#pragma endregion
+#pragma region Sprite
+	Sprite
+		background(mainMenu),
+		NGButton(NewGameButton),
+		LButton(LoadingButton),
+		SButton(SettingsButton),
+		EButton(ExitButton);
+#pragma endregion
+#pragma region Positions
+	NGButton.setPosition(100, 40);
+	LButton.setPosition(100, 80);
+	SButton.setPosition(100, 120);
+	EButton.setPosition(100, 160);
+#pragma endregion
 
 	while (isMenu)
 	{
-		menu1.setColor(Color::White);
-		menu2.setColor(Color::White);
-		menu3.setColor(Color::White);
-		menuNum = 0;
-		window.clear(Color(129, 181, 221));
+		NGButton.setColor(Color::White);
+		LButton.setColor(Color::White);
+		SButton.setColor(Color::White);
+		EButton.setColor(Color::White);
+		Select = 0;
 
-		if (IntRect(100, 30, 200, 30).contains(Mouse::getPosition(window))) { menu1.setColor(Color::Blue); menuNum = 1; }
-		if (IntRect(100, 90, 200, 30).contains(Mouse::getPosition(window))) { menu2.setColor(Color::Blue); menuNum = 2; }
-		if (IntRect(100, 150, 200, 30).contains(Mouse::getPosition(window))) { menu3.setColor(Color::Blue); menuNum = 3; }
+		if (IntRect(100, 40, 200, 30).contains(Mouse::getPosition(window)))
+		{
+			NGButton.setColor(Color::Blue); Select = 1;
+		}
+		if (IntRect(100, 80, 200, 30).contains(Mouse::getPosition(window)))
+		{
+			LButton.setColor(Color::Blue); Select = 2;
+		}
+		if (IntRect(100, 120, 200, 30).contains(Mouse::getPosition(window)))
+		{
+			SButton.setColor(Color::Blue); Select = 3;
+		}
+		if (IntRect(100, 160, 200, 30).contains(Mouse::getPosition(window)))
+		{
+			EButton.setColor(Color::Blue); Select = 4;
+		}
 
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (menuNum == 1) {
-				GameProcess(window,WindowVector); SetWindowResolution(window, WindowVector); window.setFramerateLimit(30);
-			};
-
-			if (menuNum == 2)
-			{
-				Settings(window,WindowVector); SetWindowResolution(window, WindowVector); window.setFramerateLimit(30);
-			}
-			if (menuNum == 3) { window.close(); isMenu = false; }
+			if (Select == 1) { GameProcess(window, WindowVector); };
+			if (Select == 2) {}
+			if (Select == 3) { Settings(window, WindowVector, params); }
+			if (Select == 4) { window.close(); isMenu = false; }
 		}
-
-		window.draw(menu1);
-		window.draw(menu2);
-		window.draw(menu3);
+#pragma region WinDraw
+		window.draw(background);
+		window.draw(NGButton);
+		window.draw(LButton);
+		window.draw(SButton);
+		window.draw(EButton);
+#pragma endregion
 		window.display();
 	}
-}	
+}

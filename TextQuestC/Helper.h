@@ -6,7 +6,7 @@ using namespace sf;
 	/// </summary>
 	void SetFullScreen(RenderWindow & window, Vector2u sz)
 	{
-		window.create(VideoMode(sz.x, sz.y, 32), "TextQuest", sf::Style::None);
+		window.create(VideoMode(sz.x, sz.y, 32), "TextQuest", sf::Style::Fullscreen);
 	}
 /// <summary>
 /// Установка оконного режима
