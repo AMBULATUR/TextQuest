@@ -101,11 +101,12 @@ public:
 	}
 	SetUp* LoadSettings(SetUp &params)
 	{
+
 		//ptrFile = fopen("settings.ini", "r");
 		ifstream fin;
 		char buff[11][255];
 		fin.open("settings.ini");
-		for (int i = 1; i < 11; i++) 
+		for (int i = 1; i < 11; i++)
 		{
 			fin.getline(buff[i], 50);
 			char *primer = strtok(buff[i], "=");
@@ -113,15 +114,16 @@ public:
 			buff[i][255] = *other;
 		}
 		struct SetUp *ptrizen = &params;
-		ptrizen->Xresolution = ;
-		ptrizen->Yresolution;
-		ptrizen->FullScreenMode;
-		ptrizen->Music;
-		ptrizen->Effects;
-		ptrizen->MMusic;
-		ptrizen->MEffects;
+		ptrizen->Xresolution = buff[0];
+		ptrizen->Yresolution = buff[1];
+		ptrizen->FullScreenMode = buff[2];
+		ptrizen->Music = buff[3];
+		ptrizen->Effects = buff[4];
+		ptrizen->MMusic; = buff[5];
+		ptrizen->MEffects; = buff[6];
 		fin.close();
 		//fclose(ptrFile);
 		return ptrizen;
+		//123
 	}
 };
