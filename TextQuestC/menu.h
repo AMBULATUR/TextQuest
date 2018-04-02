@@ -5,7 +5,6 @@
 #include <SFML/Window/Event.hpp>
 #include "Settings.h"
 #include "GameProcess.h"
-#include "Helper.h"
 
 using namespace sf;
 

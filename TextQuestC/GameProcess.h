@@ -3,15 +3,14 @@
 #include <fstream>
 
 using namespace sf;
-void GameProcess(RenderWindow & window, Vector2u WindowVector)
 {
-	//Загрузка текстур
+	//Г‡Г ГЈГ°ГіГ§ГЄГ  ГІГҐГЄГ±ГІГіГ°
 	window.clear();
 	Texture gameBackground;
 	gameBackground.loadFromFile("images/GameInterface.png");
-	//Преобразование в спрайт
+	//ГЏГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ Гў Г±ГЇГ°Г Г©ГІ
 	Sprite background(gameBackground);
-	//Начало отрисовки
+	//ГЌГ Г·Г Г«Г® Г®ГІГ°ГЁГ±Г®ГўГЄГЁ
 	//while (!Keyboard::isKeyPressed(Keyboard::Escape))
 //	{
 		window.draw(background);

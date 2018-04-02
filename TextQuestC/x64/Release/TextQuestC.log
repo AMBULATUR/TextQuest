@@ -1,0 +1,15 @@
+﻿  main.cpp
+d:\textquest\textquestc\GameProcess.h(3): warning C4005: ResolutionX: изменение макроопределения
+  d:\textquest\textquestc\Settings.h(3): note: см. предыдущее определение "ResolutionX"
+d:\textquest\textquestc\GameProcess.h(4): warning C4005: ResolutionY: изменение макроопределения
+  d:\textquest\textquestc\Settings.h(4): note: см. предыдущее определение "ResolutionY"
+d:\textquest\textquestc\menu.h(4): warning C4005: ResolutionX: изменение макроопределения
+  d:\textquest\textquestc\GameProcess.h(3): note: см. предыдущее определение "ResolutionX"
+d:\textquest\textquestc\menu.h(5): warning C4005: ResolutionY: изменение макроопределения
+  d:\textquest\textquestc\GameProcess.h(4): note: см. предыдущее определение "ResolutionY"
+  Создание кода
+  1 of 67 functions ( 1.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  TextQuestC.vcxproj -> D:\TextQuest\x64\Release\TextQuestC.exe
