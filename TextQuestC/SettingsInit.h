@@ -19,7 +19,7 @@ public:
 
 
 	FILE * ptrFile;
-//public:
+	//public:
 
 	SetUp * InitCheck()
 	{
@@ -101,20 +101,27 @@ public:
 	}
 	SetUp* LoadSettings(SetUp &params)
 	{
-		ptrFile = fopen("settings.ini", "r");
-
-		struct SetUp *ptrizen = &params;
-	/*	while (fgets(ptrizen->test, 100, ptrFile) != NULL)
+		//ptrFile = fopen("settings.ini", "r");
+		ifstream fin;
+		char buff[11][255];
+		fin.open("settings.ini");
+		for (int i = 1; i < 11; i++) 
 		{
-			ptrizen->Xresolution;
-			ptrizen->Yresolution;
-			ptrizen->FullScreenMode;
-			ptrizen->Music;
-			ptrizen->Effects;
-			ptrizen->MMusic;
-			ptrizen->MEffects;
+			fin.getline(buff[i], 50);
+			char *primer = strtok(buff[i], "=");
+			char *other = strtok(0, "");
+			buff[i][255] = *other;
 		}
-		fclose(ptrFile);*/
+		struct SetUp *ptrizen = &params;
+		ptrizen->Xresolution = ;
+		ptrizen->Yresolution;
+		ptrizen->FullScreenMode;
+		ptrizen->Music;
+		ptrizen->Effects;
+		ptrizen->MMusic;
+		ptrizen->MEffects;
+		fin.close();
+		//fclose(ptrFile);
 		return ptrizen;
 	}
 };
