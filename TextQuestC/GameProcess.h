@@ -1,22 +1,20 @@
 #pragma once
 #include "Helper.h"
+#include <fstream>
+
 using namespace sf;
-<<<<<<< HEAD
-#define ResolutionX 1366/2
-#define ResolutionY 768/2
-void GameProcess(sf::RenderWindow & window)
-=======
-void GameProcess(RenderWindow & window, Vector2u sz)
->>>>>>> AMBULATUR/master
 {
-//Загрузка текстур
+	//Г‡Г ГЈГ°ГіГ§ГЄГ  ГІГҐГЄГ±ГІГіГ°
+	window.clear();
 	Texture gameBackground;
-	gameBackground.loadFromFile("images/background.png");
-//Преобразование в спрайт
+	gameBackground.loadFromFile("images/GameInterface.png");
+	//ГЏГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ Гў Г±ГЇГ°Г Г©ГІ
 	Sprite background(gameBackground);
-//Начало отрисовки
-	SetFullScreen(window, sz);
-	window.draw(background);
-	window.display();
+	//ГЌГ Г·Г Г«Г® Г®ГІГ°ГЁГ±Г®ГўГЄГЁ
+	//while (!Keyboard::isKeyPressed(Keyboard::Escape))
+//	{
+		window.draw(background);
+		window.display();
+	//}
 	Sleep();
 }

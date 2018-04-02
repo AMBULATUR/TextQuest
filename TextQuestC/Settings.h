@@ -1,8 +1,9 @@
 #pragma once
-#include "Helper.h"
 
+#include "Helper.h"
 #include <imgui.h>
 #include <imgui-SFML.h>
+#include "SettingsInit.h"
 
 #define TopLeft 0
 #define TopRight 1
@@ -10,72 +11,63 @@
 #define BotRight 3
 
 using namespace sf;
+
 ImVec2 GetWindowPivot(int corner);
 ImVec2 GetWindowPos(int corner);
 void ShowExampleAppFixedOverlay(bool* p_open, ImVec2 window_pos, ImVec2 window_pos_pivot);
-void Settings(RenderWindow & window, Vector2u sz)
+void Settings(RenderWindow & window, Vector2u WindowVector, SettingsInit::SetUp params)
 {
 	//Загрузка текстур
 	Texture settingsBackground;
-	settingsBackground.loadFromFile("images/settings.png");
+	settingsBackground.loadFromFile("images/SettingsBackground.png");
 	//Преобразование в спрайт
 	Sprite background(settingsBackground);
 	
 	//Начало отрисовки
-	// sz = Vector2u(1280, 1024);
 	background.setScale(Vector2f(1.0f, 1.0f));
-	SetFullScreen(window, sz);
-
-
-	//OtherVars Start
-	window.setFramerateLimit(60); //FrameRate for IMGUI
 
 	ImVec2
-		WindowSize(sz.x / 2.0f, sz.y / 2.0f),
-		VideoWindowPos(sz.x * 0.0f, sz.y * 0.0f),
-		AudioWindowPos(sz.x / 2.0f, sz.y * 0.0f),
-		GameplayWindowPos(sz.x * 0.0f, sz.y / 2.0f),
-		ControlWindowPos(sz.x / 2.0f, sz.y / 2.0f);
+		WindowSize(WindowVector.x / 2.0f, WindowVector.y / 2.0f),
+		VideoWindowPos(WindowVector.x * 0.0f, WindowVector.y * 0.0f),
+		AudioWindowPos(WindowVector.x / 2.0f, WindowVector.y * 0.0f),
+		GameplayWindowPos(WindowVector.x * 0.0f, WindowVector.y / 2.0f),
+		ControlWindowPos(WindowVector.x / 2.0f, WindowVector.y / 2.0f);
 
-	std::string x = std::to_string(sz.x);
-	std::string y = std::to_string(sz.y);
+	std::string x = std::to_string(WindowVector.x);
+	std::string y = std::to_string(WindowVector.y);
 	std::string OptimalResolution = "optimal resolution - " + x + "x" + y;
 	const char *RR = OptimalResolution.c_str();
+#pragma endregion
 
-
-
-
-	//OtherVars End
-
-	//Video Vars
+#pragma region VideoVars
 	static int current_item_1 = 1;
 	static int Mode = 0;
+#pragma endregion
 
-	//Music Vars
-	static int MusicStatic = 50, EffectsStatic = 50;
-	static bool CheckMusic = false;
-	static bool CheckEffects = false;
+#pragma region AudioVars
+	static int MusicStatic = params.Music, EffectsStatic = params.Effects;
+	static bool CheckMusic = params.MMusic;
+	static bool CheckEffects = params.MEffects;
+#pragma endregion
 
 
 
 
-	//ImGuiPars Start
 
+	
+#pragma region ImGuiPars
 	ImGui::SFML::Init(window);
 	ImGui::StyleColorsDark();
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 0.0f;
 	style.WindowBorderSize = 0;
+#pragma endregion
 
-
-
-	//ImGuiPars End
 	sf::Clock deltaClock;
 	while (!Keyboard::isKeyPressed(Keyboard::Escape)) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			ImGui::SFML::ProcessEvent(event);
-
 			if (Keyboard::isKeyPressed(Keyboard::Escape)) {
 				break;
 			}
@@ -83,12 +75,8 @@ void Settings(RenderWindow & window, Vector2u sz)
 		ImGui::SFML::Update(window, deltaClock.restart());
 
 
-		//######################
 
-
-
-
-			//VideoWindow Start
+#pragma region VideoWindow
 		ImGui::Begin("Video", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(VideoWindowPos);
@@ -99,10 +87,8 @@ void Settings(RenderWindow & window, Vector2u sz)
 		ImGui::RadioButton("Window", &Mode, 2);
 		ImGui::Button("Save");
 		ImGui::End();
-
-		//VideoWindow End
-
-		//AudioWindow Start
+#pragma endregion
+#pragma region AudioWindow
 		ImGui::Begin("Audio", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(AudioWindowPos);
@@ -110,42 +96,30 @@ void Settings(RenderWindow & window, Vector2u sz)
 		ImGui::SliderInt("Effects", &EffectsStatic, 0, 100); ImGui::SameLine(); ImGui::Checkbox("Mute Effects", &CheckEffects);
 		ImGui::Button("Save");
 		ImGui::End();
-		//AudioWindow End
-
-		//GameplayWindow Start
+#pragma endregion
+#pragma region GamePlayWindow
 		ImGui::Begin("Gameplay", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(GameplayWindowPos);
 		ImGui::Button("Save");
 		ImGui::End();
-		//GameplayWindow End
-
-		//ControlWindow Start
+#pragma endregion
+#pragma region ControlWindow
 		ImGui::Begin("Control", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(ControlWindowPos);
 		ImGui::Button("Save");
+		ImGui::End();
+#pragma endregion
 
 		ShowExampleAppFixedOverlay(NULL, GetWindowPos(BotRight), GetWindowPivot(BotRight));
-
-		ImGui::End();
-		//ControlWindow End
 		ImGui::ShowTestWindow(); // DEBUG
-
-
-
-
-
-
-
 		window.clear();
 		window.draw(background);
 		ImGui::SFML::Render(window);
 		window.display();
 	}
-	//######################
 	ImGui::SFML::Shutdown();
-
 }
 
 static void ShowExampleAppFixedOverlay(bool* p_open, ImVec2 window_pos, ImVec2 window_pos_pivot)
@@ -178,6 +152,17 @@ static ImVec2 GetWindowPos(int corner)
 
 static ImVec2 GetWindowPivot(int corner)
 {
-
-	return ImVec2((corner & 1) ? 1.0f : 0.0f, (corner & 2) ? 1.0f : 0.0f);
+	return ImVec2
+	(
+		(corner & 1)
+		?
+		1.0f 
+		:
+		0.0f,
+		(corner & 2)
+		?
+		1.0f 
+		:
+		0.0f
+	);
 }

@@ -1,29 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "menu.h"
-
-
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
+#include "main.h"
 using namespace std;
+SettingsInit SIObject;
 class Game {
 private:
 public:
-	Game()
+	Game(SettingsInit::SetUp params)
 	{
-<<<<<<< HEAD
-		sf::RenderWindow window(VideoMode(1366 / 2, 768 / 2), "TextQuest", Style::None);
-		menu(window);
-=======
-		sf::RenderWindow window(VideoMode(0, 0), "TextQuest", Style::Fullscreen);
-		window.setVerticalSyncEnabled(true);
-		Vector2u sz = window.getSize();
-		ImGui::CreateContext();
-		menu(window, sz);
->>>>>>> AMBULATUR/master
 	};
-};
+}; 
+
 int main()
 {
-	Game obj;
+	//SettingsInit::SetUp *vcs;
+	auto vcs = SIObject.InitCheck();
+	
+	Game run(*vcs);
 	return 0;
 }

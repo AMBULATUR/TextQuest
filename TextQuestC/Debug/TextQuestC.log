@@ -1,2 +1,23 @@
 ﻿  main.cpp
-  TextQuestC.vcxproj -> C:\Users\Wrong\Documents\Visual Studio 2017\Projects\TextQuestC\Debug\TextQuestC.exe
+  imgui_draw.cpp
+  imgui_demo.cpp
+  imgui.cpp
+  imgui-SFML.cpp
+  Создание кода...
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glBindTexture@8 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glBlendFunc@8 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glColorPointer@16 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glDisable@4 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glDrawElements@16 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glEnable@4 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glEnableClientState@4 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glLoadIdentity@0 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glMatrixMode@4 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glOrtho@48 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glPopAttrib@0 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glPushAttrib@4 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glScissor@16 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glTexCoordPointer@16 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glVertexPointer@16 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+imgui-SFML.obj : error LNK2019: ёё√ыър эр эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы __imp__glViewport@16 т ЇєэъЎшш "void __cdecl `anonymous namespace'::RenderDrawLists(struct ImDrawData *)" (?RenderDrawLists@?A0x8f517d9f@@YAXPAUImDrawData@@@Z)
+C:\Users\Wrong\Documents\Visual Studio 2017\Projects\TextQuestC\Debug\TextQuestC.exe : fatal error LNK1120: эхЁрчЁх°хээ√ї тэх°эшї ¤ыхьхэЄют: 16
