@@ -1,7 +1,7 @@
 # TextQuest
 https://www.dropbox.com/sh/uw84i7phq9d6ayp/AADO_kgEQ7n5p4qIYb7TuE5ma?dl=0 - Папку закинуть в корень диска D
 
-# intro proffit
+# Intro Profit [YRELIS] 
 /*void intro(RenderWindow & window, Vector2u sz) {
 	sf::RenderWindow (sf::VideoMode(640, 480), "sfeMovie Player");
 	sfe::Movie movie;

@@ -114,13 +114,13 @@ public:
 			buff[i][255] = *other;
 		}
 		struct SetUp *ptrizen = &params;
-		ptrizen->Xresolution = buff[0];
-		ptrizen->Yresolution = buff[1];
-		ptrizen->FullScreenMode = buff[2];
-		ptrizen->Music = buff[3];
-		ptrizen->Effects = buff[4];
-		ptrizen->MMusic; = buff[5];
-		ptrizen->MEffects; = buff[6];
+		ptrizen->Xresolution;
+		ptrizen->Yresolution ;
+		ptrizen->FullScreenMode;
+		ptrizen->Music ;
+		ptrizen->Effects;
+		ptrizen->MMusic;
+		ptrizen->MEffects;
 		fin.close();
 		//fclose(ptrFile);
 		return ptrizen;
