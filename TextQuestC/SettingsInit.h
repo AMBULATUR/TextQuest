@@ -5,7 +5,7 @@ using namespace std;
 class SettingsInit
 {
 public:
-	//typedef struct __attribute__((__packed__))  - STOP, ПАКОВАННАЯ МАШИННО-НЕЗАВИСИМАЯ СТРУКТУРА В ЯЗЫКЕ СИ(HE Cpp)
+	//typedef struct __attribute__((__packed__))  - Пакованная машинно-независимая структура
 	struct SetUp {
 		int Xresolution;
 		int Yresolution;
@@ -16,7 +16,6 @@ public:
 		bool MMusic;
 		bool MEffects;
 	};
-
 
 	FILE * ptrFile;
 	//public:
@@ -101,27 +100,53 @@ public:
 	}
 	SetUp* LoadSettings(SetUp &params)
 	{
+		const int len = 30, strings = 5;
+		const char ch = '\n';
+		char mass[len][strings];
+
+		ifstream fs("settings.txt", ios::in | ios::binary);
+
+		for (int r = 0; r<strings; r++)
+		{
+			fs.getline(mass[r], len - 1, ch); //Считываем строки в массив
+			mass[r]; //Выводи строку из массива
+		}
+		fs.close(); //Закрываем файл
+
 
 		//ptrFile = fopen("settings.ini", "r");
-		ifstream fin;
-		char buff[11][255];
-		fin.open("settings.ini");
-		for (int i = 1; i < 11; i++)
-		{
-			fin.getline(buff[i], 50);
-			char *primer = strtok(buff[i], "=");
-			char *other = strtok(0, "");
-			buff[i][255] = *other;
+		vector<string> arr;
+		ifstream ifs;
+		ifs.open("settings.ini");
+		while (!ifs.eof()) {
+
+			string str;
+			string delim("= ");
+			size_t prev = 0;
+			size_t next;
+			size_t delta = delim.length();
+
+
+			getline(ifs, str);
+
+			if ((next = str.find(delim, prev)) != string::npos)
+			{
+				prev = next + prev + 2;
+				string tmp = str.substr(prev);
+				arr.push_back(tmp);
+			}
+
 		}
+
+		ifs.close();
 		struct SetUp *ptrizen = &params;
-		ptrizen->Xresolution;
-		ptrizen->Yresolution ;
-		ptrizen->FullScreenMode;
-		ptrizen->Music ;
-		ptrizen->Effects;
-		ptrizen->MMusic;
-		ptrizen->MEffects;
-		fin.close();
+		ptrizen->Xresolution = stoi(arr[0]);
+		ptrizen->Yresolution = stoi(arr[1]) ;
+		ptrizen->FullScreenMode = stoi(arr[2]);
+		ptrizen->Music =stoi(arr[3]);
+		ptrizen->Effects=stoi(arr[4]);
+		ptrizen->MMusic=stoi(arr[5]);
+		ptrizen->MEffects=stoi(arr[6]);
 		//fclose(ptrFile);
 		return ptrizen;
 		//123

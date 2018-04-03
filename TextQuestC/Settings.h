@@ -41,7 +41,7 @@ void Settings(RenderWindow & window, Vector2u WindowVector, SettingsInit::SetUp 
 
 #pragma region VideoVars
 	static int current_item_1 = 1;
-	static int Mode = 0;
+	static int Mode = params.FullScreenMode;
 #pragma endregion
 
 #pragma region AudioVars
@@ -84,7 +84,7 @@ void Settings(RenderWindow & window, Vector2u WindowVector, SettingsInit::SetUp 
 		ImGui::Text("");
 		ImGui::Combo("Resolution", &current_item_1, " 640x480\0 800x600\0 1280x1024\0 1920x1080\0 1600x1200\0");
 		ImGui::RadioButton("FullScreen", &Mode, 1); ImGui::SameLine();
-		ImGui::RadioButton("Window", &Mode, 2);
+		ImGui::RadioButton("Window", &Mode, 0);
 		ImGui::Button("Save");
 		ImGui::End();
 #pragma endregion
