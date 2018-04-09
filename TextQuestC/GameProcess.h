@@ -3,7 +3,7 @@
 #include <fstream>
 
 using namespace sf;
-void GameProcess(RenderWindow & window, Vector2u WindowVector)
+void GameProcess(RenderWindow & window, SettingsInit::SetUp params)
 {
 	//Загрузка текстур
 	window.clear();

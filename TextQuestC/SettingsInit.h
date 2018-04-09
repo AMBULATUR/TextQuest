@@ -9,12 +9,17 @@ public:
 	struct SetUp {
 		int Xresolution;
 		int Yresolution;
+		
+		int OptimalX;
+		int OptimalY;
 		bool FullScreenMode;
 
 		int Music;
 		int Effects;
 		bool MMusic;
 		bool MEffects;
+
+
 	};
 
 	FILE * ptrFile;
@@ -52,6 +57,10 @@ public:
 		//[VIDEO]
 		ptrizen->Xresolution = WindowVector.x;
 		ptrizen->Yresolution = WindowVector.y;
+
+		ptrizen->OptimalX = WindowVector.x;
+		ptrizen->OptimalY = WindowVector.y;
+
 		ptrizen->FullScreenMode = false;
 		//[AUDIO]
 		ptrizen->Music = 30;
@@ -67,7 +76,7 @@ public:
 		stringstream ParsW, ParsA, ParsG, ParsC;
 		string str;
 		const char *s1;
-		ParsW << "[Video]\nXResolution = " << ptrizen->Xresolution << "\nYResolution = " << ptrizen->Yresolution << "\nFullScreenMode = " << ptrizen->FullScreenMode;
+		ParsW << "[Video]\nXResolution = " << ptrizen->Xresolution << "\nYResolution = " << ptrizen->Yresolution << "\nFullScreenMode = " << ptrizen->FullScreenMode << "\nOptimalX = " << ptrizen->OptimalX << "\nOptimalY = " << ptrizen->OptimalY;
 		str = ParsW.str();
 		s1 = str.c_str();
 		fputs(s1, ptrFile);
@@ -87,12 +96,6 @@ public:
 		fclose(ptrFile);
 		return ptrizen;
 
-	}
-	void ChangeInit(int i)
-	{
-	}
-	void ChangeInit(bool i)
-	{
 	}
 	void UpdateSettings()
 	{
@@ -128,7 +131,6 @@ public:
 
 
 			getline(ifs, str);
-
 			if ((next = str.find(delim, prev)) != string::npos)
 			{
 				prev = next + prev + 2;
@@ -143,10 +145,13 @@ public:
 		ptrizen->Xresolution = stoi(arr[0]);
 		ptrizen->Yresolution = stoi(arr[1]) ;
 		ptrizen->FullScreenMode = stoi(arr[2]);
-		ptrizen->Music =stoi(arr[3]);
-		ptrizen->Effects=stoi(arr[4]);
-		ptrizen->MMusic=stoi(arr[5]);
-		ptrizen->MEffects=stoi(arr[6]);
+		ptrizen->OptimalX = stoi(arr[3]);
+		ptrizen->OptimalY = stoi(arr[4]);
+
+		ptrizen->Music =stoi(arr[5]);
+		ptrizen->Effects=stoi(arr[6]);
+		ptrizen->MMusic=stoi(arr[7]);
+		ptrizen->MEffects=stoi(arr[8]);
 		//fclose(ptrFile);
 		return ptrizen;
 		//123

@@ -9,7 +9,7 @@
 
 using namespace sf;
 
-void menu(RenderWindow & window, Vector2u WindowVector, SettingsInit::SetUp params)
+void menu(RenderWindow & window, SettingsInit::SetUp params)
 {
 #pragma region Vars
 	bool isMenu = 1;
@@ -72,9 +72,9 @@ void menu(RenderWindow & window, Vector2u WindowVector, SettingsInit::SetUp para
 
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (Select == 1) { GameProcess(window, WindowVector); };
+			if (Select == 1) { GameProcess(window, params); };
 			if (Select == 2) {}
-			if (Select == 3) { Settings(window, WindowVector, params); }
+			if (Select == 3) { Settings(window, params); }
 			if (Select == 4) { window.close(); isMenu = false; }
 		}
 #pragma region WinDraw

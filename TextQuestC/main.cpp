@@ -12,11 +12,10 @@ public:
 	Game(SettingsInit::SetUp params)
 	{
 		sf::RenderWindow window(VideoMode(params.Xresolution, params.Yresolution, 32), "TextQuest", Style::None);
-		Vector2u WindowVector = window.getSize();
 		ImGui::CreateContext();
 		//	SetFullScreen(window, WindowVector);
 		window.setFramerateLimit(60);
-		menu(window, WindowVector,params);
+		menu(window, params);
 	};
 }; 
 
