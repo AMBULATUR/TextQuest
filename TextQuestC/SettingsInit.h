@@ -7,11 +7,6 @@ class SettingsInit
 public:
 	//typedef struct __attribute__((__packed__))  - ѕакованна€ машинно-независима€ структура
 	struct SetUp {
-		int Xresolution;
-		int Yresolution;
-		
-		int OptimalX;
-		int OptimalY;
 		bool FullScreenMode;
 
 		int Music;
@@ -42,8 +37,6 @@ public:
 	}
 	SetUp* FirstInit(SetUp &params)
 	{
-		sf::RenderWindow window(VideoMode(0, 0), "TextQuest", Style::Fullscreen);
-		Vector2u WindowVector = window.getSize();
 
 		ptrFile = fopen("settings.ini", "w");
 		struct SetUp *ptrizen = &params;
@@ -55,50 +48,48 @@ public:
 
 
 		//[VIDEO]
-		ptrizen->Xresolution = WindowVector.x;
-		ptrizen->Yresolution = WindowVector.y;
-
-		ptrizen->OptimalX = WindowVector.x;
-		ptrizen->OptimalY = WindowVector.y;
-
 		ptrizen->FullScreenMode = false;
 		//[AUDIO]
 		ptrizen->Music = 30;
 		ptrizen->Effects = 11;
 		ptrizen->MMusic = true;
 		ptrizen->MEffects = false;
-		//[Gameplay]
-		//[Control]
 
 		///END
 
 
-		stringstream ParsW, ParsA, ParsG, ParsC;
+		stringstream ParsW, ParsA;
 		string str;
 		const char *s1;
-		ParsW << "[Video]\nXResolution = " << ptrizen->Xresolution << "\nYResolution = " << ptrizen->Yresolution << "\nFullScreenMode = " << ptrizen->FullScreenMode << "\nOptimalX = " << ptrizen->OptimalX << "\nOptimalY = " << ptrizen->OptimalY;
+		ParsW << "[Settings]\nFullScreenMode = " << ptrizen->FullScreenMode;
 		str = ParsW.str();
 		s1 = str.c_str();
 		fputs(s1, ptrFile);
-		ParsA << "\n[Audio]\nMusic = " << ptrizen->Music << "\nEffects = " << ptrizen->Effects << "\nMMusic = " << ptrizen->MMusic << "\nMEffects = " << ptrizen->MEffects;
+		ParsA << "\nMusic = " << ptrizen->Music << "\nEffects = " << ptrizen->Effects << "\nMMusic = " << ptrizen->MMusic << "\nMEffects = " << ptrizen->MEffects;
 		str = ParsA.str();
 		s1 = str.c_str();
 		fputs(s1, ptrFile);
-		ParsG << "\n[GamePlay]";
-		str = ParsG.str();
-		s1 = str.c_str();
-		fputs(s1, ptrFile);
-		ParsC << "\n[Control]";
-		s1 = str.c_str();
-		str = ParsC.str();
-		fputs(s1, ptrFile);
-
 		fclose(ptrFile);
 		return ptrizen;
 
 	}
-	void UpdateSettings()
+	void UpdateSettings(SetUp &params)
 	{
+		ptrFile = fopen("settings.ini", "w");
+		struct SetUp *ptrizen = &params;
+
+		stringstream ParsW, ParsA;
+		string str;
+		const char *s1;
+		ParsW << "[Settings]\nFullScreenMode = " << ptrizen->FullScreenMode;
+		str = ParsW.str();
+		s1 = str.c_str();
+		fputs(s1, ptrFile);
+		ParsA << "\nMusic = " << ptrizen->Music << "\nEffects = " << ptrizen->Effects << "\nMMusic = " << ptrizen->MMusic << "\nMEffects = " << ptrizen->MEffects;
+		str = ParsA.str();
+		s1 = str.c_str();
+		fputs(s1, ptrFile);
+		fclose(ptrFile);
 
 	}
 	SetUp* LoadSettings(SetUp &params)
@@ -142,16 +133,11 @@ public:
 
 		ifs.close();
 		struct SetUp *ptrizen = &params;
-		ptrizen->Xresolution = stoi(arr[0]);
-		ptrizen->Yresolution = stoi(arr[1]) ;
-		ptrizen->FullScreenMode = stoi(arr[2]);
-		ptrizen->OptimalX = stoi(arr[3]);
-		ptrizen->OptimalY = stoi(arr[4]);
-
-		ptrizen->Music =stoi(arr[5]);
-		ptrizen->Effects=stoi(arr[6]);
-		ptrizen->MMusic=stoi(arr[7]);
-		ptrizen->MEffects=stoi(arr[8]);
+		ptrizen->FullScreenMode = stoi(arr[0]);
+		ptrizen->Music =stoi(arr[1]);
+		ptrizen->Effects=stoi(arr[2]);
+		ptrizen->MMusic=stoi(arr[3]);
+		ptrizen->MEffects=stoi(arr[4]);
 		//fclose(ptrFile);
 		return ptrizen;
 		//123

@@ -15,44 +15,51 @@ using namespace sf;
 ImVec2 GetWindowPivot(int corner);
 ImVec2 GetWindowPos(int corner);
 void ShowExampleAppFixedOverlay(bool* p_open, ImVec2 window_pos, ImVec2 window_pos_pivot);
-void Settings(RenderWindow & window, SettingsInit::SetUp params)
+static SettingsInit::SetUp SendSettings(SettingsInit::SetUp params, int Mode, int MusicStatic, int EffectsStatic, bool CheckMusic, bool CheckEffects, RenderWindow & window);
+void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u WindowVector)
 {
 	//Загрузка текстур
 	Texture settingsBackground;
 	settingsBackground.loadFromFile("images/SettingsBackground.png");
 	//Преобразование в спрайт
 	Sprite background(settingsBackground);
+	static string x;
+	static string y;
 
-	Vector2u WindowVector(params.Xresolution, params.Yresolution);
+	
+#pragma region VideoVars
+	int Mode = params.FullScreenMode;
+#pragma endregion
+
+#pragma region AudioVars
+	int
+		MusicStatic = params.Music,
+		EffectsStatic = params.Effects;
+	bool CheckMusic = params.MMusic;
+	bool CheckEffects = params.MEffects;
+#pragma endregion
+	if (params.FullScreenMode == 0)
+	{
+		WindowVector.x = WindowVector.x / 2;
+		WindowVector.y = WindowVector.y / 2;
+		x = std::to_string(WindowVector.x);
+		y = std::to_string(WindowVector.y);
+	}
+	else
+	{
+		x = std::to_string(WindowVector.x);
+		y = std::to_string(WindowVector.y);
+	}
+
 	//Начало отрисовки
 	background.setScale(Vector2f(1.0f, 1.0f));
 
 	ImVec2
-		WindowSize(WindowVector.x / 2.0f, WindowVector.y / 2.0f),
-		VideoWindowPos(WindowVector.x * 0.0f, WindowVector.y * 0.0f),
-		AudioWindowPos(WindowVector.x / 2.0f, WindowVector.y * 0.0f),
-		GameplayWindowPos(WindowVector.x * 0.0f, WindowVector.y / 2.0f),
-		ControlWindowPos(WindowVector.x / 2.0f, WindowVector.y / 2.0f);
+		WindowSize(WindowVector.x, WindowVector.y),
+		VideoWindowPos(WindowVector.x * 0.0f, WindowVector.y * 0.0f);
 
-	std::string x = std::to_string(WindowVector.x);
-	std::string y = std::to_string(WindowVector.y);
-	std::string OptimalResolution = "Optimal resolution - " + x + "x" + y;
+	std::string OptimalResolution = "Current resolution - " + x + "x" + y;
 	const char *RR = OptimalResolution.c_str();
-#pragma endregion
-
-#pragma region VideoVars
-	 int current_item_1 = 1;
-	 int Mode = params.FullScreenMode;
-#pragma endregion
-
-#pragma region AudioVars
-	 int 
-		MusicStatic = params.Music, 
-		EffectsStatic = params.Effects;
-	 bool CheckMusic = params.MMusic;
-	 bool CheckEffects = params.MEffects;
-#pragma endregion
-
 
 
 
@@ -79,12 +86,7 @@ void Settings(RenderWindow & window, SettingsInit::SetUp params)
 		}
 		ImGui::SFML::Update(window, deltaClock.restart());
 
-		stringstream ParsW;
-		string str;
-		const char *s1;
-		ParsW << "640x480" << '\0' << "800x600" << '\0' << "1280x1024" << '\0' << "1920x1080" << '\0' << "1600x1200" << '\0' << "0000x0000" << '\0' << params.OptimalX << "x" << params.OptimalY << '\0';
-		str = ParsW.str();
-		s1 = str.c_str();
+
 
 #pragma region VideoWindow
 		ImGui::Begin("Video", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
@@ -93,67 +95,26 @@ void Settings(RenderWindow & window, SettingsInit::SetUp params)
 		//ImGui::Button("Set"); ImGui::SameLine(); 
 		ImGui::Text(RR);
 		ImGui::Text("");
-		ImGui::Combo("Resolution", &current_item_1, s1);
 		ImGui::RadioButton("FullScreen", &Mode, 1); ImGui::SameLine();
 		ImGui::RadioButton("Window", &Mode, 0);
-		if (ImGui::Button("Save"))
-			clicked++;
-		if (clicked & 1)
-		{
-			ImGui::SameLine();
-			ImGui::Text("Thanks for clicking me!");
-		}
-
-		ImGui::End();
-#pragma endregion
-#pragma region AudioWindow
-		ImGui::Begin("Audio", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
-		ImGui::SetWindowSize(WindowSize);
-		ImGui::SetWindowPos(AudioWindowPos);
 		ImGui::SliderInt("Music", &MusicStatic, 0, 100); ImGui::SameLine(); ImGui::Checkbox("Mute Music", &CheckMusic);
 		ImGui::SliderInt("Effects", &EffectsStatic, 0, 100); ImGui::SameLine(); ImGui::Checkbox("Mute Effects", &CheckEffects);
 		if (ImGui::Button("Save"))
 			clicked++;
 		if (clicked & 1)
 		{
-			ImGui::SameLine();
-			ImGui::Text("Thanks for clicking me!");
+			params = SendSettings(params, Mode, MusicStatic, EffectsStatic, CheckMusic, CheckEffects, window);
+			clicked--;
 		}
 		ImGui::End();
 #pragma endregion
-#pragma region GamePlayWindow
-		ImGui::Begin("Gameplay", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
-		ImGui::SetWindowSize(WindowSize);
-		ImGui::SetWindowPos(GameplayWindowPos);
-		if (ImGui::Button("Save"))
-			clicked++;
-		if (clicked & 1)
-		{
-			ImGui::SameLine();
-			ImGui::Text("Thanks for clicking me!");
-		}
-		ImGui::End();
-#pragma endregion
-#pragma region ControlWindow
-		ImGui::Begin("Control", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
-		ImGui::SetWindowSize(WindowSize);
-		ImGui::SetWindowPos(ControlWindowPos);
-		if (ImGui::Button("Save"))
-			clicked++;
-		if (clicked & 1)
-		{
-			ImGui::SameLine();
-			ImGui::Text("Thanks for clicking me!");
-		}
-		ImGui::End();
-#pragma endregion
-
 		ShowExampleAppFixedOverlay(NULL, GetWindowPos(BotRight), GetWindowPivot(BotRight));
 		ImGui::ShowTestWindow(); // DEBUG
 		window.clear();
 		window.draw(background);
 		ImGui::SFML::Render(window);
 		window.display();
+
 	}
 	ImGui::SFML::Shutdown();
 }
@@ -190,14 +151,23 @@ static ImVec2 GetWindowPivot(int corner)
 	((corner & 1) ? 1.0f : 0.0f, (corner & 2) ? 1.0f : 0.0f);
 }
 
-static void SendSettings(SettingsInit::SetUp params)
+static SettingsInit::SetUp SendSettings(SettingsInit::SetUp params, int Mode, int MusicStatic, int EffectsStatic, bool CheckMusic, bool CheckEffects, RenderWindow & window)
 {
-	params.Xresolution;
-	params.Yresolution;
-	params.FullScreenMode;
+	if (Mode == 1)
+		window.create(VideoMode(0, 0, 32), "TextQuest", sf::Style::Fullscreen);
+	else
+	{
+		window.create(VideoMode(0, 0, 32), "TextQuest", sf::Style::Fullscreen);
+		Vector2u WindowVector = window.getSize();
+		window.create(VideoMode(WindowVector.x / 2, WindowVector.y / 2, 32), "TextQuest", sf::Style::None);
 
-	params.Effects;
-	params.Music;
-	params.MEffects;
-	params.MMusic;
+	}
+	params.FullScreenMode = Mode;
+	params.Effects = EffectsStatic;
+	params.Music = MusicStatic;
+	params.MEffects = CheckEffects;
+	params.MMusic = CheckMusic;
+	SettingsInit obj;
+	obj.UpdateSettings(params);
+	return params;
 }

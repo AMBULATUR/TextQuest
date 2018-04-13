@@ -9,7 +9,7 @@
 
 using namespace sf;
 
-void menu(RenderWindow & window, SettingsInit::SetUp params)
+void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVector)
 {
 #pragma region Vars
 	bool isMenu = 1;
@@ -74,7 +74,8 @@ void menu(RenderWindow & window, SettingsInit::SetUp params)
 		{
 			if (Select == 1) { GameProcess(window, params); };
 			if (Select == 2) {}
-			if (Select == 3) { Settings(window, params); }
+			if (Select == 3) { 
+				Settings(window, params,WindowVector); }
 			if (Select == 4) { window.close(); isMenu = false; }
 		}
 #pragma region WinDraw
