@@ -5,6 +5,10 @@
 using namespace sf;
 void GameProcess(RenderWindow & window, SettingsInit::SetUp params)
 {
+	Font font;
+	font.loadFromFile("CyrilicOld.ttf");
+	Text text("", font, 20);
+
 	//Загрузка текстур
 	window.clear();
 	Texture gameBackground;
@@ -13,11 +17,7 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params)
 	Sprite background(gameBackground);
 	//Начало отрисовки
 
-
-
-	Font font;
-	font.loadFromFile("CyrilicOld.ttf");
-	Text text("", font, 20);
+	
 	text.setString("Hello \n asd");
 	text.setPosition(500,500);
 	window.draw(background);

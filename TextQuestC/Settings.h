@@ -66,7 +66,7 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 
 
 #pragma region ImGuiPars
-	static int clicked = 0;
+	int clicked = 0;
 
 	ImGui::SFML::Init(window);
 	ImGui::StyleColorsDark();
@@ -76,13 +76,10 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 #pragma endregion
 
 	sf::Clock deltaClock;
-	while (!Keyboard::isKeyPressed(Keyboard::Escape)) {
+	while (!Keyboard::isKeyPressed(Keyboard::Escape) && clicked != 1) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			ImGui::SFML::ProcessEvent(event);
-			if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-				break;
-			}
 		}
 		ImGui::SFML::Update(window, deltaClock.restart());
 
@@ -104,7 +101,6 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 		if (clicked & 1)
 		{
 			params = SendSettings(params, Mode, MusicStatic, EffectsStatic, CheckMusic, CheckEffects, window);
-			clicked--;
 		}
 		ImGui::End();
 #pragma endregion
@@ -114,7 +110,6 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 		window.draw(background);
 		ImGui::SFML::Render(window);
 		window.display();
-
 	}
 	ImGui::SFML::Shutdown();
 }
