@@ -44,9 +44,23 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 	SButton.setPosition(100, 120);
 	EButton.setPosition(100, 160);
 #pragma endregion
-
+	const Vector2f defaultResolution = Vector2f(1920.0F, 1080.0F);
+	
+	
+	
+	
 	while (isMenu)
 	{
+		if (params.FullScreenMode == 0)
+		{
+			background.setScale(static_cast<float>(WindowVector.x / 2) / defaultResolution.x,
+				static_cast<float>(WindowVector.y / 2) / defaultResolution.y);
+		}
+		else
+		{
+			background.setScale(static_cast<float>(WindowVector.x ) / defaultResolution.x,
+				static_cast<float>(WindowVector.y) / defaultResolution.y);
+		}
 		NGButton.setColor(Color::White);
 		LButton.setColor(Color::White);
 		SButton.setColor(Color::White);
@@ -72,10 +86,9 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (Select == 1) { GameProcess(window, params); };
+			if (Select == 1) { GameProcess(window, params, WindowVector); };
 			if (Select == 2) {}
-			if (Select == 3) { 
-				Settings(window, params,WindowVector); }
+			if (Select == 3) { Settings(window, params,WindowVector); }
 			if (Select == 4) { window.close(); isMenu = false; }
 		}
 #pragma region WinDraw

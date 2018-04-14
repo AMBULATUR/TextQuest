@@ -11,14 +11,18 @@ private:
 public:
 	Game(SettingsInit::SetUp params)
 	{
-		sf::RenderWindow  window(VideoMode(0, 0, 32), "TextQuest", Style::Fullscreen);
-		Vector2u WindowVector = window.getSize();
-		if (params.FullScreenMode == 0)
+		sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+		sf::RenderWindow  window;
+		Vector2u WindowVector (desktop.width, desktop.height);
+		if (params.FullScreenMode == 1)
 		{
-			window.create(VideoMode(WindowVector.x / 2 , WindowVector.y / 2, 32), "TextQuest", sf::Style::None);
+			window.create(VideoMode(WindowVector.x, WindowVector.y, desktop.bitsPerPixel), "TextQuest", Style::Fullscreen);
+		}	
+		else
+		{
+			window.create(VideoMode(WindowVector.x / 2, WindowVector.y / 2, 32), "TextQuest", sf::Style::None);
 		}
 		ImGui::CreateContext();
-		//	SetFullScreen(window, WindowVector);
 		window.setFramerateLimit(60);
 		menu(window, params, WindowVector);
 	};
@@ -26,7 +30,6 @@ public:
 
 int main()
 {
-	//SettingsInit::SetUp *vcs;
 	auto vcs = SIObject.InitCheck();
 
 	Game run(*vcs);

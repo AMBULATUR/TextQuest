@@ -22,7 +22,9 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 	Texture settingsBackground;
 	settingsBackground.loadFromFile("images/SettingsBackground.png");
 	//Преобразование в спрайт
+	
 	Sprite background(settingsBackground);
+	
 	static string x;
 	static string y;
 
@@ -50,9 +52,11 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 		x = std::to_string(WindowVector.x);
 		y = std::to_string(WindowVector.y);
 	}
+	const Vector2f defaultResolution = Vector2f(1920.0F, 1080.0F);
+	background.setScale(static_cast<float>(WindowVector.x) / defaultResolution.x,
+		static_cast<float>(WindowVector.y) / defaultResolution.y); // Так считаем размер спрайтов
 
 	//Начало отрисовки
-	background.setScale(Vector2f(1.0f, 1.0f));
 
 	ImVec2
 		WindowSize(WindowVector.x, WindowVector.y),
@@ -148,13 +152,12 @@ static ImVec2 GetWindowPivot(int corner)
 
 static SettingsInit::SetUp SendSettings(SettingsInit::SetUp params, int Mode, int MusicStatic, int EffectsStatic, bool CheckMusic, bool CheckEffects, RenderWindow & window)
 {
+	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 	if (Mode == 1)
-		window.create(VideoMode(0, 0, 32), "TextQuest", sf::Style::Fullscreen);
+		window.create(VideoMode(desktop.width, desktop.height, desktop.bitsPerPixel), "TextQuest", Style::Fullscreen);
 	else
 	{
-		window.create(VideoMode(0, 0, 32), "TextQuest", sf::Style::Fullscreen);
-		Vector2u WindowVector = window.getSize();
-		window.create(VideoMode(WindowVector.x / 2, WindowVector.y / 2, 32), "TextQuest", sf::Style::None);
+		window.create(VideoMode(desktop.width / 2, desktop.height / 2, 32), "TextQuest", sf::Style::None);
 
 	}
 	params.FullScreenMode = Mode;
