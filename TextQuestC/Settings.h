@@ -22,13 +22,13 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 	Texture settingsBackground;
 	settingsBackground.loadFromFile("images/SettingsBackground.png");
 	//Преобразование в спрайт
-	
+
 	Sprite background(settingsBackground);
-	
+
 	static string x;
 	static string y;
 
-	
+
 #pragma region VideoVars
 	int Mode = params.FullScreenMode;
 #pragma endregion
@@ -59,7 +59,7 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 	//Начало отрисовки
 
 	ImVec2
-		WindowSize(WindowVector.x, WindowVector.y),
+		WindowSize(static_cast<float>(WindowVector.x), static_cast<float>(WindowVector.y)),
 		VideoWindowPos(WindowVector.x * 0.0f, WindowVector.y * 0.0f);
 
 	std::string OptimalResolution = "Current resolution - " + x + "x" + y;
