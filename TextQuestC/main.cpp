@@ -23,7 +23,7 @@ public:
 			window.create(VideoMode(WindowVector.x / 2, WindowVector.y / 2, 32), "TextQuest", sf::Style::None);
 		}
 		ImGui::CreateContext();
-		window.setFramerateLimit(60);
+		window.setFramerateLimit(30);
 		menu(window, params, WindowVector);
 	};
 };
