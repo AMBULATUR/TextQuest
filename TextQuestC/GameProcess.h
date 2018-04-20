@@ -42,16 +42,8 @@ string ParseFile(string path)
 }
 
 
-
-
-
-
-
 void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVector)
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-
 	//Загрузка текстур
 	window.clear();
 	Texture gameBackground;
