@@ -24,7 +24,7 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 		ExitButton;
 #pragma endregion
 #pragma region LoadTexture
-	mainMenu.loadFromFile("images/MenuBackground.png");
+	mainMenu.loadFromFile("images/MenuBackground.jpg");
 	NewGameButton.loadFromFile("images/NewGame.png");
 	LoadingButton.loadFromFile("images/Loading.png");
 	SettingsButton.loadFromFile("images/Settings.png");
@@ -39,10 +39,10 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 		EButton(ExitButton);
 #pragma endregion
 #pragma region Positions
-	NGButton.setPosition(100, 40);
-	LButton.setPosition(100, 80);
-	SButton.setPosition(100, 120);
-	EButton.setPosition(100, 160);
+	NGButton.setPosition(40, 80);
+	LButton.setPosition(40, 140);
+	SButton.setPosition(40, 200);
+	EButton.setPosition(40, 260);
 #pragma endregion
 	const Vector2f defaultResolution = Vector2f(1920.0F, 1080.0F);
 	
@@ -67,21 +67,21 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 		EButton.setColor(Color::White);
 		Select = 0;
 
-		if (IntRect(100, 40, 200, 30).contains(Mouse::getPosition(window)))
+		if (IntRect(40, 80, 200, 30).contains(Mouse::getPosition(window)))
 		{
-			NGButton.setColor(Color::Blue); Select = 1;
+			NGButton.setColor(Color::Cyan); Select = 1;
 		}
-		if (IntRect(100, 80, 200, 30).contains(Mouse::getPosition(window)))
+		if (IntRect(40, 140, 200, 30).contains(Mouse::getPosition(window)))
 		{
-			LButton.setColor(Color::Blue); Select = 2;
+			LButton.setColor(Color::Cyan); Select = 2;
 		}
-		if (IntRect(100, 120, 200, 30).contains(Mouse::getPosition(window)))
+		if (IntRect(40, 200, 200, 30).contains(Mouse::getPosition(window)))
 		{
-			SButton.setColor(Color::Blue); Select = 3;
+			SButton.setColor(Color::Cyan); Select = 3;
 		}
-		if (IntRect(100, 160, 200, 30).contains(Mouse::getPosition(window)))
+		if (IntRect(40, 260, 200, 30).contains(Mouse::getPosition(window)))
 		{
-			EButton.setColor(Color::Blue); Select = 4;
+			EButton.setColor(Color::Red); Select = 4;
 		}
 
 		if (Mouse::isButtonPressed(Mouse::Left))

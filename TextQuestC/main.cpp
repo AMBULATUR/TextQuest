@@ -20,10 +20,10 @@ public:
 		}	
 		else
 		{
-			window.create(VideoMode(WindowVector.x / 2, WindowVector.y / 2, 32), "TextQuest", sf::Style::None);
+			window.create(VideoMode(WindowVector.x / 2, WindowVector.y / 2, 32), "TextQuest", sf::Style::Close);
 		}
 		ImGui::CreateContext();
-		window.setFramerateLimit(30);
+		window.setFramerateLimit(60);
 		menu(window, params, WindowVector);
 	};
 };

@@ -5,6 +5,7 @@
 using namespace sf;
 
 
+
 const string PATH = "Story/";
 string filename = "file1.txt";
 string questions[1000];
@@ -12,6 +13,7 @@ string way[1000];
 
 string ParseFile(string path)
 {
+
 	ifstream fin;
 	fin.open(PATH + path);
 	string out = "";
@@ -26,10 +28,10 @@ string ParseFile(string path)
 				out += temp;
 				continue;
 			}
-			else 
+			else
 			{
 				char temp1[10000];
-				for(int i = 0; !fin.eof(); i++)
+				for (int i = 0; !fin.eof(); i++)
 				{
 					fin.getline(temp1, 10000);
 					questions[i] = temp1;
@@ -42,12 +44,17 @@ string ParseFile(string path)
 }
 
 
+
+
+
+
+
 void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVector)
 {
 	//Загрузка текстур
 	window.clear();
 	Texture gameBackground;
-	gameBackground.loadFromFile("images/GameInterface.png");
+	gameBackground.loadFromFile("images/GameInterface.jpg");
 	//Преобразование в спрайт
 	Sprite background(gameBackground);
 	//Начало отрисовки
@@ -58,9 +65,13 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		WindowVector.y = WindowVector.y / 2;
 	}
 	ImVec2
+
 		WindowSize(static_cast<float>(WindowVector.x / 2), static_cast<float>(WindowVector.y / 2)),
-		TextWindowPos(WindowVector.x * 0.0f, WindowVector.y * 0.0f), // RightTopWindowPos(WindowVector.x / 2.0f, WindowVector.y * 0.0f),
-		AnswerWindowPos(WindowVector.x * 0.0f, WindowVector.y / 2.0f); // RightBotWindowPos(WindowVector.x / 2.0f, WindowVector.y / 2.0f);
+		AnswerSize(static_cast<float>(WindowVector.x), static_cast<float>(WindowVector.y / 2)),
+		TextWindowPos(WindowVector.x * 0.055f, WindowVector.y * 0.065f), // 0.55f , 0.65f
+		AnswerWindowPos(WindowVector.x * 0.055f, WindowVector.y / 1.4f), // 0.055f, 1.4f
+		SpriteWindowPos(WindowVector.x / 2.0f, WindowVector.y * 0.0f);
+	// RightBotWindowPos(WindowVector.x / 2.0f, WindowVector.y / 2.0f);
 
 	const Vector2f defaultResolution = Vector2f(1920.0F, 1080.0F); //<---- Разрешения исходной пикчи.
 	background.setScale(static_cast<float>(WindowVector.x) / defaultResolution.x, static_cast<float>(WindowVector.y) / defaultResolution.y);
@@ -74,6 +85,7 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 0.0f;
 	style.WindowBorderSize = 0;
+	static char buf[32];
 #pragma endregion
 
 	sf::Clock deltaClock;
@@ -85,26 +97,33 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		ImGui::SFML::Update(window, deltaClock.restart());
 
 #pragma region TextWindow
-		ImGui::Begin("Text", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus  );
+
+		ImGui::SetNextWindowBgAlpha(0.0f);
+		ImGui::Begin("Text", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(TextWindowPos);
 
-		string file = ParseFile(filename);
-
 		string tt = ParseFile(filename);
+
 		const char *RR = tt.c_str();
+		/*	while (*RR)
+			{
+
+				RR++;
+			}*/
 		ImGui::TextWrapped(RR);
 		ImGui::End();
 #pragma endregion
 #pragma region AnswerWindow
-		ImGui::Begin("Answer", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus );
-		ImGui::SetWindowSize(WindowSize);
+		ImGui::SetNextWindowBgAlpha(0.0f);
+		ImGui::Begin("Answer", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
+		ImGui::SetWindowSize(AnswerSize);
 		ImGui::SetWindowPos(AnswerWindowPos);
 
 		static int selected = -1;
 		for (int n = 0; n < 5; n++)
 		{
-			char buf[32];
+
 			sprintf(buf, questions[n].c_str());
 			if (ImGui::Selectable(buf, selected == n))
 				selected = n;
@@ -118,7 +137,13 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 
 		ImGui::End();
 #pragma endregion
-
+#pragma region SpriteWinow
+		ImGui::SetNextWindowBgAlpha(0.0f);
+		ImGui::Begin("Sprite", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
+		ImGui::SetWindowSize(WindowSize);
+		ImGui::SetWindowPos(SpriteWindowPos);
+		ImGui::End();
+#pragma endregion
 
 
 
@@ -128,5 +153,10 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		ImGui::SFML::Render(window);
 		window.display();
 	}
-	ImGui::SFML::Shutdown();
+	try {
+		ImGui::SFML::Shutdown();
+	}
+	catch (exception)
+	{
+	}
 }
