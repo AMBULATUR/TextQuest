@@ -58,46 +58,50 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 		}
 		else
 		{
-			background.setScale(static_cast<float>(WindowVector.x ) / defaultResolution.x,
+			background.setScale(static_cast<float>(WindowVector.x) / defaultResolution.x,
 				static_cast<float>(WindowVector.y) / defaultResolution.y);
 		}
-		NGButton.setColor(Color::White);
-		LButton.setColor(Color::White);
-		SButton.setColor(Color::White);
-		EButton.setColor(Color::White);
-		Select = 0;
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			NGButton.setColor(Color::White);
+			LButton.setColor(Color::White);
+			SButton.setColor(Color::White);
+			EButton.setColor(Color::White);
+			Select = 0;
 
-		if (IntRect(40, 80, 200, 30).contains(Mouse::getPosition(window)))
-		{
-			NGButton.setColor(Color::Cyan); Select = 1;
-		}
-		if (IntRect(40, 140, 200, 30).contains(Mouse::getPosition(window)))
-		{
-			LButton.setColor(Color::Cyan); Select = 2;
-		}
-		if (IntRect(40, 200, 200, 30).contains(Mouse::getPosition(window)))
-		{
-			SButton.setColor(Color::Cyan); Select = 3;
-		}
-		if (IntRect(40, 260, 200, 30).contains(Mouse::getPosition(window)))
-		{
-			EButton.setColor(Color::Red); Select = 4;
-		}
+			if (IntRect(40, 80, 200, 30).contains(Mouse::getPosition(window)))
+			{
+				NGButton.setColor(Color::Cyan); Select = 1;
+			}
+			if (IntRect(40, 140, 200, 30).contains(Mouse::getPosition(window)))
+			{
+				LButton.setColor(Color::Cyan); Select = 2;
+			}
+			if (IntRect(40, 200, 200, 30).contains(Mouse::getPosition(window)))
+			{
+				SButton.setColor(Color::Cyan); Select = 3;
+			}
+			if (IntRect(40, 260, 200, 30).contains(Mouse::getPosition(window)))
+			{
+				EButton.setColor(Color::Red); Select = 4;
+			}
 
-		if (Mouse::isButtonPressed(Mouse::Left))
-		{
-			if (Select == 1) { GameProcess(window, params, WindowVector); };
-			if (Select == 2) {}
-			if (Select == 3) { Settings(window, params,WindowVector); }
-			if (Select == 4) { window.close(); isMenu = false; }
-		}
+			if (Mouse::isButtonPressed(Mouse::Left))
+			{
+				if (Select == 1) { GameProcess(window, params, WindowVector); };
+				if (Select == 2) {}
+				if (Select == 3) { Settings(window, params, WindowVector); }
+				if (Select == 4) { window.close(); isMenu = false; }
+			}
 #pragma region WinDraw
-		window.draw(background);
-		window.draw(NGButton);
-		window.draw(LButton);
-		window.draw(SButton);
-		window.draw(EButton);
+			window.draw(background);
+			window.draw(NGButton);
+			window.draw(LButton);
+			window.draw(SButton);
+			window.draw(EButton);
 #pragma endregion
-		window.display();
+			window.display();
+		}
 	}
 }

@@ -1,8 +1,8 @@
-﻿Obychnoye utro, nash glavnyy geroy prosypayetsya ot zvonka budil'nika. Pochesav golovu on nadel tapochki i poshel na kukhnyu. Pridya na kukhnyu u nego lezhal svezhiy vypusk gazety «Istoriya odnogo goroda» i na pervoy stranitse bol'shikh bukm napisano «Mer goroda reshil snesti staryy dom dlya stroitel'stva nochnogo kluba», glavnyy geroy beglo probezhal po nazvaniyu stat'i i vslukh progovoril
+﻿Обычное утро, наш главный герой просыпается от звонка будильника. Почесав голову он надел тапочки и пошел на кухню. Придя на кухню у него лежал свежий выпуск газеты “История одного города” и на первой странице большими буквами написано “Мэр города решил снести старый дом для строительства ночного клуба”, Главный герой бегло пробежался по названию статьи и вслух проговорил
 @
-1. Etot chertov mir nikogda ne pomenyayetsya
+1. “Этот чертов мир никогда не поменяется”
 file2.txt
-2. Pochemu by ne snesti ves' gorod
-file2.txt
-3. Luchshe by postroili chto-nibud' poleznoye
-file2.txt
+2. “Почему бы не снести весь город”
+file3.txt
+3. “Лучше бы построили что-нибудь полезное ”
+file1.txt

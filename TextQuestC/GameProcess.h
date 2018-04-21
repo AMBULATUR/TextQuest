@@ -1,11 +1,13 @@
-#pragma once
+п»ї#pragma once
+#pragma execution_character_set("utf-8")
 #include "Helper.h"
 #include <fstream>
-#include <Windows.h>
+
+
 using namespace sf;
 
 
-
+ImFont*  youFont = nullptr;
 const string PATH = "Story/";
 string filename = "file1.txt";
 string questions[1000];
@@ -51,13 +53,14 @@ string ParseFile(string path)
 
 void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVector)
 {
-	//Загрузка текстур
+
+	//Р—Р°РіСЂСѓР·РєР° С‚РµРєСЃС‚СѓСЂ
 	window.clear();
 	Texture gameBackground;
 	gameBackground.loadFromFile("images/GameInterface.jpg");
-	//Преобразование в спрайт
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ СЃРїСЂР°Р№С‚
 	Sprite background(gameBackground);
-	//Начало отрисовки
+	//РќР°С‡Р°Р»Рѕ РѕС‚СЂРёСЃРѕРІРєРё
 
 	if (params.FullScreenMode == 0)
 	{
@@ -73,14 +76,14 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		SpriteWindowPos(WindowVector.x / 2.0f, WindowVector.y * 0.0f);
 	// RightBotWindowPos(WindowVector.x / 2.0f, WindowVector.y / 2.0f);
 
-	const Vector2f defaultResolution = Vector2f(1920.0F, 1080.0F); //<---- Разрешения исходной пикчи.
+	const Vector2f defaultResolution = Vector2f(1920.0F, 1080.0F); //<---- Р Р°Р·СЂРµС€РµРЅРёСЏ РёСЃС…РѕРґРЅРѕР№ РїРёРєС‡Рё.
 	background.setScale(static_cast<float>(WindowVector.x) / defaultResolution.x, static_cast<float>(WindowVector.y) / defaultResolution.y);
-	// размер спрайта по x = (Текущее разрешение.x/Разрешение background.png.x)
-	// размер спрайта по y = (Текущее разрешение.y/Разрешение background.png.y)
-	// адаптивный размер спрайта = setScale(x,y)
+	// СЂР°Р·РјРµСЂ СЃРїСЂР°Р№С‚Р° РїРѕ x = (РўРµРєСѓС‰РµРµ СЂР°Р·СЂРµС€РµРЅРёРµ.x/Р Р°Р·СЂРµС€РµРЅРёРµ background.png.x)
+	// СЂР°Р·РјРµСЂ СЃРїСЂР°Р№С‚Р° РїРѕ y = (РўРµРєСѓС‰РµРµ СЂР°Р·СЂРµС€РµРЅРёРµ.y/Р Р°Р·СЂРµС€РµРЅРёРµ background.png.y)
+	// Р°РґР°РїС‚РёРІРЅС‹Р№ СЂР°Р·РјРµСЂ СЃРїСЂР°Р№С‚Р° = setScale(x,y)
 
 #pragma region ImGuiPars
-	ImGui::SFML::Init(window);
+//	ImGui::SFML::Init(window);
 	ImGui::StyleColorsDark();
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 0.0f;
@@ -95,23 +98,18 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 			ImGui::SFML::ProcessEvent(event);
 		}
 		ImGui::SFML::Update(window, deltaClock.restart());
-
+		
 #pragma region TextWindow
 
 		ImGui::SetNextWindowBgAlpha(0.0f);
 		ImGui::Begin("Text", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus);
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(TextWindowPos);
-
-		string tt = ParseFile(filename);
-
+		const string tt = ParseFile(filename);
 		const char *RR = tt.c_str();
-		/*	while (*RR)
-			{
-
-				RR++;
-			}*/
+	
 		ImGui::TextWrapped(RR);
+
 		ImGui::End();
 #pragma endregion
 #pragma region AnswerWindow
@@ -125,15 +123,13 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		{
 
 			sprintf(buf, questions[n].c_str());
-			if (ImGui::Selectable(buf, selected == n))
+			if (ImGui::Selectable(buf, selected == n)) {
 				selected = n;
+				filename = way[selected];
+			}
 		}
-		if (ImGui::Button("#NO DESIGN BUTTON \n Press"))
-		{
-			//Код который будет выполняться, пример есть в Settings.h
-			int sfd = 1;
-			filename = way[selected];
-		}
+
+
 
 		ImGui::End();
 #pragma endregion
@@ -152,11 +148,6 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		window.draw(background);
 		ImGui::SFML::Render(window);
 		window.display();
-	}
-	try {
-		ImGui::SFML::Shutdown();
-	}
-	catch (exception)
-	{
+		
 	}
 }

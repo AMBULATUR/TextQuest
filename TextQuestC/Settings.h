@@ -71,8 +71,9 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 
 #pragma region ImGuiPars
 	int clicked = 0;
-
-	ImGui::SFML::Init(window);
+	ImGuiIO& io = ImGui::GetIO();
+	
+	//ImGui::SFML::Init(window);
 	ImGui::StyleColorsDark();
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 0.0f;
@@ -115,7 +116,6 @@ void Settings(RenderWindow & window, SettingsInit::SetUp & params, Vector2u Wind
 		ImGui::SFML::Render(window);
 		window.display();
 	}
-	ImGui::SFML::Shutdown();
 }
 
 static void ShowExampleAppFixedOverlay(bool* p_open, ImVec2 window_pos, ImVec2 window_pos_pivot)
