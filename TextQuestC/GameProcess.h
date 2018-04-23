@@ -69,7 +69,7 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 	}
 	ImVec2
 
-		WindowSize(static_cast<float>(WindowVector.x / 2), static_cast<float>(WindowVector.y / 2)),
+		WindowSize(static_cast<float>(WindowVector.x / 2.25), static_cast<float>(WindowVector.y / 2)),
 		AnswerSize(static_cast<float>(WindowVector.x), static_cast<float>(WindowVector.y / 2)),
 		TextWindowPos(WindowVector.x * 0.055f, WindowVector.y * 0.065f), // 0.55f , 0.65f
 		AnswerWindowPos(WindowVector.x * 0.055f, WindowVector.y / 1.4f), // 0.055f, 1.4f
