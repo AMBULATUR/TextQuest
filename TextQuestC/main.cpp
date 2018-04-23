@@ -27,7 +27,8 @@ public:
 		ImGuiIO& io = ImGui::GetIO();
 		static const ImWchar ranges[] =
 		{	
-		 0x0020, 0x00FF, // Basic Latin + Latin Supplement
+		0x0020, 0x0039, // Basic Latin + Latin Supplement
+		0x0041, 0x00FF, // Ignore char " (0x0040)
         0x0400, 0x052F, // Cyrillic + Cyrillic Supplement
         0x2DE0, 0x2DFF, // Cyrillic Extended-A
         0xA640, 0xA69F, // Cyrillic Extended-B

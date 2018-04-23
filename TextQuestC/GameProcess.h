@@ -41,7 +41,7 @@ string ParseFile(string path)
 			fin.getline(temp, 10000);
 			if (temp[0] != '@')
 			{
-				out += temp;
+				//out += temp; <-НАХУЙ ТУТ ЭТО БЛЯТЬ, ЧТО ЭТО ЗА ХУЙНЯ
 				continue;
 			}
 			else
@@ -109,6 +109,8 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 	static char buf[32];
 	bool Exit = false;
 	bool Menu = false;
+
+	const char *RR;
 #pragma endregion
 
 	sf::Clock deltaClock;
@@ -126,7 +128,8 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(TextWindowPos);
 		const string tt = ParseFile(filename);
-		const char *RR = tt.c_str();
+		
+		RR = tt.c_str();
 
 		ImGui::TextWrapped(RR);
 
@@ -141,7 +144,6 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		static int selected = -1;
 		for (int n = 0; n < 5; n++)
 		{
-
 			sprintf(buf, questions[n].c_str());
 			if (ImGui::Selectable(buf, selected == n)) {
 				selected = n;
