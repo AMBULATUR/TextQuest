@@ -8,7 +8,17 @@
 #include "Helper.h"
 
 using namespace sf;
-
+string LoadSave()
+{
+	ifstream fin;
+	char out[1000];
+	fin.open(PATH + "SaveFile.txt");
+	if (fin.is_open())
+	{
+		fin.getline(out, 1000);
+	}
+	return out[0] == -52 ? "file1.txt" : out;
+}
 void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVector)
 {
 #pragma region Vars
@@ -89,8 +99,8 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 
 			if (Mouse::isButtonPressed(Mouse::Left))
 			{
-				if (Select == 1) { GameProcess(window, params, WindowVector); };
-				if (Select == 2) {}
+				if (Select == 1) { remove("Story/SaveFile.txt"); GameProcess(window, params, WindowVector, LoadSave()); };
+				if (Select == 2) { GameProcess(window, params, WindowVector, LoadSave()); }
 				if (Select == 3) { Settings(window, params, WindowVector); }
 				if (Select == 4) { window.close(); isMenu = false; }
 			}

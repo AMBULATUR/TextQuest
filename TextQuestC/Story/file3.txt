@@ -1,4 +1,6 @@
 Gde po vsem radiostantsiyam govorili pro snos starogo zhil'ya, on byl ne v vostorge ot etogo i prosto vyklyuchil radio. Vremya 11 chasov, on priyezzhayet v ofis, parkuyet mashinu gde vsegda parkoval i poshel rabotat'. Segodnya byl obychnyy den', gde ne proiskhodilo nichego interesnogo , gde-to zaderzhali i izbili bomzha, kto-to potsarapal mashinu vazhnogo chinovnika, obychnyy den'. Podoshel konets rabochego dnya, nash geroy vyshel na 10 minut ran'she , gde na vykhode yemu skazal okhrannik “Artem ty chego tak rano vykhodish', yeshche 10 minut do kontsa rabochego dnya”.
 @
 1. Ne bespokoysya, ya zavtra tebe kuplyu pachku tvoikh lyubimykh, yesli sdelayesh' vid, chto ya yeshche 10 minut byl tut
+file1.txt
 2. A u tebya shirinka rasstegnuta
+file1.txt
