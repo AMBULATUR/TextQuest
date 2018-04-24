@@ -12,12 +12,13 @@ string LoadSave()
 {
 	ifstream fin;
 	char out[1000];
+	out[0] = 0;
 	fin.open(PATH + "SaveFile.txt");
 	if (fin.is_open())
 	{
 		fin.getline(out, 1000);
 	}
-	return out[0] == -52 ? "file1.txt" : out;
+	return out[0] == NULL ? "file1.txt" : out;
 }
 void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVector)
 {

@@ -41,7 +41,7 @@ string ParseFile(string path)
 			fin.getline(temp, 10000);
 			if (temp[0] != '@')
 			{
-				//out += temp; <-НАХУЙ ТУТ ЭТО БЛЯТЬ, ЧТО ЭТО ЗА ХУЙНЯ
+			//	out += temp;// <-НАХУЙ ТУТ ЭТО БЛЯТЬ, ЧТО ЭТО ЗА ХУЙНЯ
 				continue;
 			}
 			else
@@ -72,8 +72,10 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 	Texture gameBackground, sprite;
 	gameBackground.loadFromFile("images/GameInterface.jpg");
 	sprite.loadFromFile("images/1.png");
+	sprite.setSmooth(true);
 	//Преобразование в спрайт
 	Sprite background(gameBackground), GSprite(sprite);
+
 	//Начало отрисовки
 
 	if (params.FullScreenMode == 0)
