@@ -98,9 +98,8 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 
 	// RightBotWindowPos(WindowVector.x / 2.0f, WindowVector.y / 2.0f);
 
-	const Vector2f defaultResolution = Vector2f(1920.0F, 1080.0F); //<---- Разрешения исходной пикчи.
-	background.setScale(static_cast<float>(WindowVector.x) / defaultResolution.x, static_cast<float>(WindowVector.y) / defaultResolution.y);
-	GSprite.setScale(static_cast<float>(WindowVector.x) / defaultResolution.x, static_cast<float>(WindowVector.y) / defaultResolution.y);
+	background.setScale(static_cast<float>(WindowVector.x) / gameBackground.getSize().x, static_cast<float>(WindowVector.y) / gameBackground.getSize().y);
+	GSprite.setScale(static_cast<float>(WindowVector.x) / gameBackground.getSize().x, static_cast<float>(WindowVector.y) / gameBackground.getSize().y);
 	// размер спрайта по x = (Текущее разрешение.x/Разрешение background.png.x)
 	// размер спрайта по y = (Текущее разрешение.y/Разрешение background.png.y)
 	// адаптивный размер спрайта = setScale(x,y)
