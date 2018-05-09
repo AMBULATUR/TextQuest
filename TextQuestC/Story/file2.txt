@@ -1,12 +1,6 @@
-Ryadom lezhala zapiska ot yego devushki “Segodnya ne zaderzhivaysya, budu tebya zhdat'. Tvoya Veronika ”, ot neye nash geroy usmekhnulsya. On sdelal sebe kofe, vzyal s soboy zhurnalistskiye pribautki (khz che on mozhet s soboy vzyat'), sel v mashinu i poyekhal v ofis na rabotu. Poka nash geroy yekhal v mashine, on vklyuchil novosti
+﻿Рядом лежала записка от его девушки “Сегодня не задерживайся, буду тебя ждать. Твоя Вероника , от нее наш герой усмехнулся. Он сделал себе кофе, взял с собой журналистские прибаутки, сел в машину и поехал в офис на работу. Пока наш герой ехал в машине, он включил новости 
 @
-1. Glavnyy geroy pereklyuchayet radiostantsiyu vpered
+1. Главный герой переключает радиостанцию вперед
 file3.txt
-2. Glavnyy geroy pereklyuchayet radiostantsiyu nazad
+2. Главный герой переключает радиостанцию назад
 file3.txt
-
-Clear
-
-Clear
-
-Clear

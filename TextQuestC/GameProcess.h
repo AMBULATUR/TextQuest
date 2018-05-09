@@ -9,10 +9,11 @@ using namespace sf;
 
 ImFont*  youFont = nullptr;
 const string PATH = "Story/";
-string filename = "file1.txt";
+string filename = "file0.txt";
 string questions[1000];
 int numOfQuestions;
 string way[1000];
+int amountOfAnswers;
 
 
 
@@ -47,13 +48,15 @@ string ParseFile(string path)
 			else
 			{
 				char temp1[10000];
-				for (int i = 0; !fin.eof(); i++)
+				int i = 0;
+				for (; !fin.eof(); i++)
 				{
 					fin.getline(temp1, 10000);
 					questions[i] = temp1;
 					fin.getline(temp1, 10000);
 					way[i] = temp1;
 				}
+				amountOfAnswers = i;
 			}
 		}
 	return out;
@@ -144,8 +147,9 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		ImGui::SetWindowPos(AnswerWindowPos);
 
 		static int selected = -1;
-		for (int n = 0; n < 5; n++)
+		for (int n = 0; n < amountOfAnswers; n++)
 		{
+		
 			sprintf(buf, questions[n].c_str());
 			if (ImGui::Selectable(buf, selected == n)) {
 				selected = n;

@@ -1,8 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
+
+
+#include <SFML\Audio.hpp>
 #include "Settings.h"
 #include "GameProcess.h"
 #include "Helper.h"
@@ -22,11 +26,9 @@ string LoadSave()
 }
 void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVector)
 {
-#pragma region Vars
-	bool isMenu = 1;
-	int Select = 0;
-#pragma endregion
-#pragma region Texture
+
+#pragma region Init Texture
+
 	Texture
 		mainMenu,
 		NewGameButton,
@@ -41,6 +43,12 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 	SettingsButton.loadFromFile("images/Settings.png");
 	ExitButton.loadFromFile("images/Exit.png");
 #pragma endregion
+
+#pragma region LoadMusic
+	Music MainMenuMusic;
+	MainMenuMusic.openFromFile("music/mainmenu.ogg");
+	MainMenuMusic.play();
+#pragma endregion
 #pragma region Sprite
 	Sprite
 		background(mainMenu),
@@ -49,51 +57,71 @@ void menu(RenderWindow & window, SettingsInit::SetUp params, Vector2u WindowVect
 		SButton(SettingsButton),
 		EButton(ExitButton);
 #pragma endregion
-#pragma region Positions
-	NGButton.setPosition(40, 80);
-	LButton.setPosition(40, 140);
-	SButton.setPosition(40, 200);
-	EButton.setPosition(40, 260);
+#pragma region Vars
+	bool isMenu = 1;
+	int Select = 0;
+	FloatRect NG;
+	FloatRect LB;
+	FloatRect SB;
+	FloatRect EB;
+
 #pragma endregion
-	const Vector2f defaultResolution = Vector2f(1920.0F, 1080.0F);
-	
-	
-	
-	
+
 	while (isMenu)
 	{
+		if (params.MMusic == false && MainMenuMusic.getStatus() == false)
+			MainMenuMusic.play();
+		if (params.MMusic == true)
+			MainMenuMusic.stop();
+
+		MainMenuMusic.setVolume(params.Music);
 		if (params.FullScreenMode == 0)
 		{
-			background.setScale(static_cast<float>(WindowVector.x / 2) / defaultResolution.x,
-				static_cast<float>(WindowVector.y / 2) / defaultResolution.y);
+			NGButton.setPosition(40, 80); LButton.setPosition(40, 140);
+			SButton.setPosition(40, 200); EButton.setPosition(40, 260);
+
+			NGButton.setScale(1.0f, 1.0f); LButton.setScale(1.0f, 1.0f);
+			SButton.setScale(1.0f, 1.0f); EButton.setScale(1.0f, 1.0f);
+
+			background.setScale(static_cast<float>(WindowVector.x / 2) / mainMenu.getSize().x,
+				static_cast<float>(WindowVector.y / 2) / mainMenu.getSize().y);
 		}
 		else
 		{
-			background.setScale(static_cast<float>(WindowVector.x) / defaultResolution.x,
-				static_cast<float>(WindowVector.y) / defaultResolution.y);
+			NGButton.setPosition(40, 80); LButton.setPosition(40, 180);
+			SButton.setPosition(40, 280); EButton.setPosition(40, 380);
+
+			NGButton.setScale(2.0f, 2.0f); LButton.setScale(2.0f, 2.0f);
+			SButton.setScale(2.0f, 2.0f); EButton.setScale(2.0f, 2.0f);
+
+			background.setScale(static_cast<float>(WindowVector.x) / mainMenu.getSize().x,
+				static_cast<float>(WindowVector.y) / mainMenu.getSize().y);
 		}
+		NG = NGButton.getGlobalBounds();
+		LB = LButton.getGlobalBounds();
+		SB = SButton.getGlobalBounds();
+		EB = EButton.getGlobalBounds();
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			NGButton.setColor(Color::White);
-			LButton.setColor(Color::White);
-			SButton.setColor(Color::White);
-			EButton.setColor(Color::White);
+			NGButton.setColor(Color::White); LButton.setColor(Color::White);
+			SButton.setColor(Color::White); EButton.setColor(Color::White);
 			Select = 0;
 
-			if (IntRect(40, 80, 200, 30).contains(Mouse::getPosition(window)))
+
+			if (IntRect(NG.left, NG.top, NG.width, NG.height).contains(Mouse::getPosition(window)))
 			{
 				NGButton.setColor(Color::Cyan); Select = 1;
 			}
-			if (IntRect(40, 140, 200, 30).contains(Mouse::getPosition(window)))
+			if (IntRect(LB.left, LB.top, LB.width, LB.height).contains(Mouse::getPosition(window)))
 			{
 				LButton.setColor(Color::Cyan); Select = 2;
 			}
-			if (IntRect(40, 200, 200, 30).contains(Mouse::getPosition(window)))
+			if (IntRect(SB.left, SB.top, SB.width, SB.height).contains(Mouse::getPosition(window)))
 			{
 				SButton.setColor(Color::Cyan); Select = 3;
 			}
-			if (IntRect(40, 260, 200, 30).contains(Mouse::getPosition(window)))
+			if (IntRect(EB.left, EB.top, EB.width, EB.height).contains(Mouse::getPosition(window)))
 			{
 				EButton.setColor(Color::Red); Select = 4;
 			}
