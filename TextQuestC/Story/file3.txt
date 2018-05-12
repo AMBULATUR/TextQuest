@@ -4,3 +4,5 @@
 file4.txt
 2. “А у тебя ширинка расстегнута”
 file4.txt
+@
+images/1.png

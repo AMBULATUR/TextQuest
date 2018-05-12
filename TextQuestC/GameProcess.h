@@ -11,6 +11,7 @@ ImFont*  youFont = nullptr;
 const string PATH = "Story/";
 string filename = "file0.txt";
 string questions[1000];
+string spriter;
 int numOfQuestions;
 string way[1000];
 int amountOfAnswers;
@@ -42,7 +43,6 @@ string ParseFile(string path)
 			fin.getline(temp, 10000);
 			if (temp[0] != '@')
 			{
-			//	out += temp;// <-НАХУЙ ТУТ ЭТО БЛЯТЬ, ЧТО ЭТО ЗА ХУЙНЯ
 				continue;
 			}
 			else
@@ -51,10 +51,18 @@ string ParseFile(string path)
 				int i = 0;
 				for (; !fin.eof(); i++)
 				{
+
 					fin.getline(temp1, 10000);
+					if (temp1[0] == '@')
+					{
+						fin.getline(temp1, 10000);
+						spriter = temp1;	
+						break;
+					}
 					questions[i] = temp1;
 					fin.getline(temp1, 10000);
 					way[i] = temp1;
+					
 				}
 				amountOfAnswers = i;
 			}
@@ -74,10 +82,8 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 	window.clear();
 	Texture gameBackground, sprite;
 	gameBackground.loadFromFile("images/GameInterface.jpg");
-	sprite.loadFromFile("images/1.png");
-	sprite.setSmooth(true);
 	//Преобразование в спрайт
-	Sprite background(gameBackground), GSprite(sprite);
+	Sprite background(gameBackground);
 
 	//Начало отрисовки
 
@@ -89,17 +95,17 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 	ImVec2
 
 		WindowSize(WindowVector.x / 2.30f, WindowVector.y / 1.68f),
-		AnswerSize(static_cast<float>(WindowVector.x), WindowVector.y / 2.0f),
+		AnswerSize(static_cast<float>(WindowVector.x /1.134), WindowVector.y / 2.0f),
 		ExitSize(WindowVector.x / 4.0f, WindowVector.y / 4.0f),
 		ExitWindowPos(WindowVector.x / 2.5f, WindowVector.y / 2.5f),
 		TextWindowPos(WindowVector.x * 0.055f, WindowVector.y * 0.065f), // 0.55f , 0.65f
 		AnswerWindowPos(WindowVector.x * 0.055f, WindowVector.y / 1.4f); // 0.055f, 1.4f
-	GSprite.setPosition(WindowVector.x / 1.99f, WindowVector.y * 0.065f);
+
 
 	// RightBotWindowPos(WindowVector.x / 2.0f, WindowVector.y / 2.0f);
 
 	background.setScale(static_cast<float>(WindowVector.x) / gameBackground.getSize().x, static_cast<float>(WindowVector.y) / gameBackground.getSize().y);
-	GSprite.setScale(static_cast<float>(WindowVector.x) / gameBackground.getSize().x, static_cast<float>(WindowVector.y) / gameBackground.getSize().y);
+
 	// размер спрайта по x = (Текущее разрешение.x/Разрешение background.png.x)
 	// размер спрайта по y = (Текущее разрешение.y/Разрешение background.png.y)
 	// адаптивный размер спрайта = setScale(x,y)
@@ -132,9 +138,13 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		ImGui::SetWindowSize(WindowSize);
 		ImGui::SetWindowPos(TextWindowPos);
 		const string tt = ParseFile(filename);
-		
-		RR = tt.c_str();
 
+		sprite.loadFromFile(spriter);
+		Sprite GSprite(sprite);
+		GSprite.setPosition(WindowVector.x / 1.99f, WindowVector.y * 0.065f);
+		GSprite.setScale(static_cast<float>(WindowVector.x) / gameBackground.getSize().x, static_cast<float>(WindowVector.y) / gameBackground.getSize().y);
+
+		RR = tt.c_str();
 		ImGui::TextWrapped(RR);
 
 		ImGui::End();
@@ -148,7 +158,7 @@ void GameProcess(RenderWindow & window, SettingsInit::SetUp params, Vector2u Win
 		static int selected = -1;
 		for (int n = 0; n < amountOfAnswers; n++)
 		{
-		
+
 			sprintf(buf, questions[n].c_str());
 			if (ImGui::Selectable(buf, selected == n)) {
 				selected = n;
