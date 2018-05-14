@@ -51,8 +51,9 @@ string ParseFile(string path)
 				int i = 0;
 				for (; !fin.eof(); i++)
 				{
-
 					fin.getline(temp1, 10000);
+					spriter = "images/null.png";
+
 					if (temp1[0] == '@')
 					{
 						fin.getline(temp1, 10000);
