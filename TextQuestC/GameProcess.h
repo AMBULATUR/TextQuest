@@ -56,7 +56,8 @@ string ParseFile(string path)
 					if (temp1[0] == '@')
 					{
 						fin.getline(temp1, 10000);
-						spriter = temp1;	
+						spriter = "images/";
+						spriter += temp1;	
 						break;
 					}
 					questions[i] = temp1;
