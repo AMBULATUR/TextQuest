@@ -4,3 +4,5 @@
 file69.txt
 2.Как горло, не болит?
 file69.txt
+@
+vika.jpg

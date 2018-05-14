@@ -7,3 +7,5 @@ file22.txt
 file22.txt
 3. О чем ты хочешь со мной поговорить?
 file22.txt
+@
+vika.jpg

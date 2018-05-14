@@ -8,3 +8,5 @@
 @
 1.Продолжить
 file47.txt
+@
+phone.png

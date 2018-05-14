@@ -2,3 +2,4 @@
 @
 1.Продолжить
 file91.txt
+Картинка: avakuatar.jpeg

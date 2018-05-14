@@ -6,3 +6,5 @@ file28.txt
 file28.txt
 3. Я вас слушаю, меня зовут Вероника
 file28.txt 
+@
+veronika.jpg

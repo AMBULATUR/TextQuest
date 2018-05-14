@@ -15,3 +15,5 @@
 file25.txt
 2. За 26 февраля...
 file25.txt
+@
+oleg.jpg

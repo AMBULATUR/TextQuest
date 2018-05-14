@@ -4,3 +4,5 @@
 file6.txt
 2. Взять диктофон
 file6.txt
+@
+artem.jpg

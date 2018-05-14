@@ -7,3 +7,5 @@
 file64.txt
 2.Почему ты решил убить их?
 file64.txt
+@
+arem.jpg

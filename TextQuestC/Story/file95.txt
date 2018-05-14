@@ -9,3 +9,5 @@
 @
 1.Продолжить
 file96.txt
+@
+psevdodantist.jpg

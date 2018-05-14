@@ -10,3 +10,5 @@
 @
 1.Продолжить
 file76.txt
+@
+avakuatar.jpeg

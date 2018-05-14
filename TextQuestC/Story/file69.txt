@@ -5,3 +5,5 @@
 @
 1.Продолжить
 file70.txt
+@
+artem.jpg

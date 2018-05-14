@@ -6,3 +6,5 @@ file15.txt
 file15.txt
 3. <Кто это?>
 file15.txt
+@
+artem.jpg

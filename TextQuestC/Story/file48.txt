@@ -4,3 +4,5 @@
 file49.txt
 2. Стой там, что такое?
 file49.txt
+@
+vika.jpg

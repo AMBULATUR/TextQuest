@@ -6,3 +6,5 @@
 file57.txt
 2.Привет Вика, как ты?
 file57.txt
+@
+artem.jpg

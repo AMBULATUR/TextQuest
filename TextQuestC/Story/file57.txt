@@ -6,3 +6,5 @@
 file58.txt
 2.[Артем передает цветы]
 file58.txt 
+@
+vika.jpg

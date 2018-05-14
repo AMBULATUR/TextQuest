@@ -12,3 +12,5 @@
 file17.txt
 2. «Вы что делаете?
 file17.txt
+@
+avakuatar.jpeg

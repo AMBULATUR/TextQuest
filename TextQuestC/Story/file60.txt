@@ -16,3 +16,5 @@ file61.txt
 file61.txt
 3.Ну ахуеть теперь!
 file61.txt
+@
+medsistr.jpg

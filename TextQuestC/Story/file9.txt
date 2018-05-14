@@ -6,3 +6,5 @@ file10.txt
 file10.txt
 3. Промолчать… 
 file10.txt
+@
+medsistr.jpg

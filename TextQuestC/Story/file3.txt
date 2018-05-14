@@ -5,4 +5,4 @@ file4.txt
 2. “А у тебя ширинка расстегнута”
 file4.txt
 @
-Loading.png
+artem.jpg

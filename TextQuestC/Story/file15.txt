@@ -4,3 +4,5 @@
 file16.txt
 2. <В морге...точно...>
 file16.txt
+@
+phone.png

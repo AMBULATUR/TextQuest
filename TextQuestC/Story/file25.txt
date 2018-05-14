@@ -11,3 +11,5 @@
 @
 1.Продолжить
 file26.txt
+@
+sikurity.jpg

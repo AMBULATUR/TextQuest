@@ -5,3 +5,5 @@
 file43.txt
 2. Несколько лет , но….
 file43.txt
+@
+vika.jpg

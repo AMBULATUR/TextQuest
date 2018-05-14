@@ -4,3 +4,5 @@
 file11.txt
 2. Нет, я никуда не выйду!
 file11.txt
+@
+sasha.jpg
